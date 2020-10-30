@@ -1,0 +1,33 @@
+[
+  {
+    "resultsPath": "/Users/niic/Sync/Code/nvsk/nevskii/api/src/",
+    "pluralizeNames": true,
+    "noConfigs": false,
+    "convertCaseFile": "pascal",
+    "convertCaseEntity": "pascal",
+    "convertCaseProperty": "camel",
+    "convertEol": "LF",
+    "propertyVisibility": "none",
+    "lazy": false,
+    "activeRecord": false,
+    "generateConstructor": false,
+    "customNamingStrategyPath": "",
+    "relationIds": false,
+    "strictMode": "none",
+    "skipSchema": false,
+    "indexFile": false,
+    "exportType": "named"
+  },
+  {
+    "host": "127.0.0.1",
+    "port": 5432,
+    "databaseName": "nevskii",
+    "user": "postgres",
+    "password": "abcd",
+    "databaseType": "postgres",
+    "schemaName": "public",
+    "ssl": false,
+    "skipTables": [],
+    "onlyTables": []
+  }
+]
