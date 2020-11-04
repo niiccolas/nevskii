@@ -7,8 +7,8 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@/types/*" : ["./src/types/*"],
-      "*" : ["./src/types/*"]
+      "@/types/*" : ["src/types/*"],
+      "*" : ["src/types/*"]
     },
     "typeRoots": [
       "./src/types"
@@ -19,17 +19,16 @@
     "strict": true,
     "module": "commonjs",
     "moduleResolution": "node",
-    "outDir": "./build",
+    "outDir": "dist",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "declaration": true,
     "sourceMap": true
   },
   "exclude": [
-    "./node_modules/**/*",
-    "./build/**/*"
+    "node_modules", "dist"
   ],
   "include": [
-    "./src/**/*"
+    "src/**/*"
   ]
 }

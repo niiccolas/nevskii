@@ -1,21 +1,29 @@
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
-import Vinyl from '../entities/Vinyl';
+import Vinyl from '../entities/Vynil';
 
 export const getVinyls = async (
   _: Request,
   res: Response,
 ): Promise<Response> => {
-  const users = await getRepository(Vinyl).find();
-  return res.json(users);
+  try {
+    const users = await getRepository(Vinyl).find();
+    return res.json(users);
+  } catch (error) {
+    return res.json(error);
+  }
 };
 
 export const getVinyl = async (
   req: Request,
   res: Response,
 ): Promise<Response> => {
-  const user = await getRepository(Vinyl).findOne(req.params.id);
-  return res.json(user);
+  try {
+    const user = await getRepository(Vinyl).findOne(req.params.id);
+    return res.json(user);
+  } catch (error) {
+    return res.json(error);
+  }
 };
 
 export const createVinyl = async (
@@ -42,13 +50,11 @@ export const updateVinyl = async (
 ): Promise<Response> => {
   try {
     const user = await getRepository(Vinyl).findOne(req.params.id);
-
     if (user) {
       getRepository(Vinyl).merge(user, req.body);
       const results = await getRepository(Vinyl).save(user);
       return res.json(results);
     }
-
     return res.status(404).json({ msg: 'User not found' });
   } catch ({ name, message, detail }) {
     return res.json({
@@ -63,6 +69,10 @@ export const deleteVinyl = async (
   req: Request,
   res: Response,
 ): Promise<Response> => {
-  const user = await getRepository(Vinyl).delete(req.params.id);
-  return res.json(user);
+  try {
+    const user = await getRepository(Vinyl).delete(req.params.id);
+    return res.json(user);
+  } catch (error) {
+    return res.json(error);
+  }
 };

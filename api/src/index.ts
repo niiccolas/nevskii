@@ -2,7 +2,7 @@ import express, { Response, Application, NextFunction } from 'express';
 import cors from 'cors';
 import chalk from 'chalk';
 import morgan from 'morgan';
-import { tryConnectDB } from './helpers';
+import { tryConnectDB } from './database';
 import routes from './routes/index.routes';
 
 const PORT: string | 8080 = process.env.PORT || 8080;

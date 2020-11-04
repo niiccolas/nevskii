@@ -1,4 +1,3 @@
-// TS file allows dealing with multiple environments in a single file
 import { ConnectionOptions } from 'typeorm';
 import path from 'path';
 require('dotenv').config();
@@ -8,19 +7,19 @@ const isCompiled = path.extname(__filename).includes('js');
 export default {
   type: 'postgres',
   host: process.env.DB_HOST,
-  port: parseInt(process.env.DB_PORT!),
+  port: process.env.DB_PORT ? parseInt(process.env.DB_PORT) : 5432,
   username: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
-  synchronize: !process.env.DB_NO_SYNC,
-  logging: !process.env.DB_NO_LOGS,
+  synchronize: process.env.DB_SYNC === 'true',
+  logging: process.env.DB_LOGS === 'true',
   autoReconnect: true,
   reconnectTries: 15,
   reconnectInterval: 2000,
-  entities: [`src/entities/**/*.${isCompiled ? 'js' : 'ts'}`],
-  migrations: [`src/migration/**/*.${isCompiled ? 'js' : 'ts'}`],
+  entities: [isCompiled ? 'dist/entities/**/*.js' : 'src/entities/**/*.ts'],
+  migrations: [isCompiled ? 'dist/migration/**/*.js' : 'src/migration/**/*.ts'],
   cli: {
-    entitiesDir: 'src/entity',
+    entitiesDir: 'src/entities',
     migrationsDir: 'src/migration',
   },
 } as ConnectionOptions;

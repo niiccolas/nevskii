@@ -57,9 +57,6 @@ export default class Products {
   @OneToMany(
     () => ProductAuthors,
     productAuthors => productAuthors.idPauProduct,
-    {
-      onDelete: 'CASCADE',
-    },
   )
   productAuthors!: ProductAuthors[];
 
@@ -93,7 +90,7 @@ export default class Products {
 
   @ManyToOne(() => Publishers, publishers => publishers.products)
   @JoinColumn([{ name: 'id_publisher', referencedColumnName: 'idPublisher' }])
-  idPublisher!: Publishers;
+  idPublisher?: Publishers;
 
   @ManyToOne(() => StockStatuses, stockStatuses => stockStatuses.products)
   @JoinColumn([

@@ -2,12 +2,11 @@
   "name": "@nevskii/api",
   "version": "1.0.0",
   "description": "",
-  "main": "build/index.ts",
-  "types": "build/index.d.ts",
+  "main": "dist/index.js",
   "scripts": {
-    "start": "ts-node src/index.ts",
+    "start": "node dist/index.js",
     "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' --files src/index.ts",
-    "build": "rm -rf build && tsc -p ."
+    "build": "rm -rf dist && tsc -p ."
   },
   "keywords": [],
   "author": "",
@@ -17,9 +16,10 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "morgan": "^1.10.0",
+    "pg": "^8.4.2",
     "reflect-metadata": "^0.1.13",
-    "typeorm": "^0.2.28",
-    "ts-node": "^9.0.0"
+    "ts-node": "^9.0.0",
+    "typeorm": "^0.2.28"
   },
   "devDependencies": {
     "@types/cors": "^2.8.8",

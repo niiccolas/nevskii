@@ -1,5 +1,5 @@
 import { createConnection, getConnection, Connection } from 'typeorm';
-import ORMConfig from '../../ormconfig';
+import ORMConfig from './ormconfig';
 
 /**
  * Re-use DB connection if already existant.

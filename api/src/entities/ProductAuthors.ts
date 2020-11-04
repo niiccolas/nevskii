@@ -14,15 +14,11 @@ export default class ProductAuthors {
   @PrimaryGeneratedColumn({ type: 'integer', name: 'id_product_authors' })
   idProductAuthors!: number;
 
-  @ManyToOne(() => Authors, authors => authors.productAuthors, {
-    onDelete: 'CASCADE',
-  })
+  @ManyToOne(() => Authors, authors => authors.productAuthors)
   @JoinColumn([{ name: 'id_pau_author', referencedColumnName: 'idAuthor' }])
   idPauAuthor!: Authors;
 
-  @ManyToOne(() => Products, products => products.productAuthors, {
-    onDelete: 'CASCADE',
-  })
+  @ManyToOne(() => Products, products => products.productAuthors)
   @JoinColumn([{ name: 'id_pau_product', referencedColumnName: 'idProduct' }])
   idPauProduct!: Products;
 }
