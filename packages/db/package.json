@@ -1,0 +1,23 @@
+{
+  "name": "@nevskii/db",
+  "version": "1.0.0",
+  "description": "Starter PostgreSQL database for the Nevskii platform. Seed, dump, deploy!",
+  "main": "src/index.js",
+  "scripts": {
+    "seed": "node src/index.js"
+  },
+  "keywords": [],
+  "author": "niiccolas",
+  "license": "ISC",
+  "dependencies": {
+    "csvtojson": "^2.0.10",
+    "dotenv": "^8.2.0",
+    "pg-format": "^1.0.4",
+    "pg": "^8.3.3",
+    "pgtools": "^0.3.0",
+    "spinnies": "^0.5.1"
+  },
+  "devDependencies": {
+    "minimist": "^1.2.5"
+  }
+}
