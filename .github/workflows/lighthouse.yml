@@ -1,0 +1,16 @@
+name: Lighthouse audit (staging)
+on: [pull_request, workflow_dispatch]
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Lighthouse audit for NEVSKII-WEB staging URL
+      uses: jakejarvis/lighthouse-action@master
+      with:
+        url: 'https://nevskii-web.herokuapp.com/'
+    - name: Upload results as an artifact
+      uses: actions/upload-artifact@main
+      with:
+        name: report
+        path: './report'
