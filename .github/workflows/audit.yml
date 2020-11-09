@@ -1,0 +1,38 @@
+name: Audit STAGING
+on: 
+  repository_dispatch:
+    types: [trigger-audit-lighthouse, workflow_dispatch]
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Lighthouse audit of nevskii-WEB staging URL
+      uses: jakejarvis/lighthouse-action@master
+      with:
+        url: 'https://nevskii-web.herokuapp.com/'
+    - name: Upload results as artifact
+      uses: actions/upload-artifact@main
+      with:
+        name: report
+        path: './report'
+  publish:
+    name: Publish Lighthouse audit
+    needs: audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Download audit artifact
+        uses: actions/download-artifact@master
+        with:
+          name: report
+          path: report
+      - name: Deploy Lighthouse report to S3 bucket
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.NEVSKII_AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.NEVSKII_AWS_SECRET_ACCESS_KEY }}
+        run: |
+          aws s3 cp \
+          --recursive \
+          --acl public-read \
+          ./report s3://nevskii
