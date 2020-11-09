@@ -8,7 +8,7 @@ export const getProducts = async (
 ): Promise<Response> => {
   try {
     const DEFAULT_ITEMS_PER_PAGE = 10;
-    const DEFAULT_PAGE = 0; // DML initializes first productId to 0
+    const DEFAULT_PAGE = 1;
     enum OrderBy {
       price = 'price',
       title = 'title',

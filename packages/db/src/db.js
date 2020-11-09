@@ -100,6 +100,8 @@ const seedMainTables = async data => {
       subcategory_genre_4: csv_scg4,
     },
   ] of data.entries()) {
+    const indexOneBased = index + 1; // DB items indices should start at 1
+
     try {
       await pool.query(
         `INSERT INTO videos(
@@ -112,7 +114,7 @@ const seedMainTables = async data => {
       minutes)
       VALUES($1, $2, $3, $4, $5, $6, $7)`,
         [
-          index,
+          indexOneBased,
           getIdIndex(video_zones, csv_dvd_zone),
           getIdIndex(video_categories, csv_category),
           getIdIndex(tv_formats, csv_format_tv),
@@ -142,8 +144,8 @@ const seedMainTables = async data => {
         id_stock_status)
         VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16)`,
         [
-          index,
-          index,
+          indexOneBased,
+          indexOneBased,
           csv_title,
           csv_original_title,
           csv_price === 'N.C.' ? null : parseInt(csv_price.replace(/\D/g, '')),
@@ -167,7 +169,7 @@ const seedMainTables = async data => {
             id_vac_video,
             id_vac_actor)
           VALUES($1, $2)`,
-          [index, getIdIndex(actors_names, actor)],
+          [indexOneBased, getIdIndex(actors_names, actor)],
         );
       });
 
@@ -181,7 +183,7 @@ const seedMainTables = async data => {
                id_vau_video,
                id_vau_audio_track)
              VALUES($1, $2)`,
-            [index, trackId],
+            [indexOneBased, trackId],
           );
         }
       });
@@ -192,7 +194,7 @@ const seedMainTables = async data => {
                 id_vsc_video,
                 id_vsc_subcategory)
                VALUES($1, $2)`,
-          [index, getIdIndex(subcategories, csv_subcategory)],
+          [indexOneBased, getIdIndex(subcategories, csv_subcategory)],
         );
       }
 
@@ -204,7 +206,7 @@ const seedMainTables = async data => {
               id_vge_video,
               id_vge_genre)
                  VALUES($1, $2)`,
-              [index, getIdIndex(genres, csv_subcategory_genre)],
+              [indexOneBased, getIdIndex(genres, csv_subcategory_genre)],
             );
           }
         },
@@ -220,7 +222,7 @@ const seedMainTables = async data => {
               id_vst_video,
               id_vst_subtitle)
              VALUES($1, $2)`,
-            [index, trackId],
+            [indexOneBased, trackId],
           );
         }
       });
@@ -231,7 +233,7 @@ const seedMainTables = async data => {
             id_vco_video,
             id_vco_collection)
            VALUES($1, $2)`,
-          [index, getIdIndex(collections, csv_collection)],
+          [indexOneBased, getIdIndex(collections, csv_collection)],
         );
       }
 
@@ -243,7 +245,7 @@ const seedMainTables = async data => {
                 id_pco_product,
                 id_pco_country)
                VALUES($1, $2)`,
-              [index, getIdIndex(countries, country.toLowerCase())],
+              [indexOneBased, getIdIndex(countries, country.toLowerCase())],
             );
           } catch (error) {
             logExit(error, csv_EAN);
@@ -259,7 +261,7 @@ const seedMainTables = async data => {
                   id_pau_product,
                   id_pau_author)
                  VALUES($1, $2)`,
-              [index, getIdIndex(authors_names, author)],
+              [indexOneBased, getIdIndex(authors_names, author)],
             );
           } catch (error) {
             logExit(error, csv_EAN);
@@ -429,13 +431,13 @@ const seedOrders = async (total, itemsIdRange) => {
   const itemIdMin = itemsIdRange[0] + 1; // avoid off by one errors
   const itemIdMax = itemsIdRange[1] - 1; // avoid off by one errors
   const orders = new Array(total).fill(null).map((_, index) => ({
-    index: index + 1,
+    indexOneBased: index + 1,
     userId: randomInt(2, 3),
     orderQuantity: randomInt(1, 7),
     productId: randomInt(itemIdMin, itemIdMax),
   }));
 
-  for (const { index, userId, productId, orderQuantity } of orders) {
+  for (const { indexOneBased, userId, productId, orderQuantity } of orders) {
     try {
       await pool.query(
         `INSERT INTO orders (
@@ -445,7 +447,7 @@ const seedOrders = async (total, itemsIdRange) => {
             "created_at")
           VALUES
           ($1, $2, $3, $4)`,
-        [index, userId, 'Completed', 'NOW()'],
+        [indexOneBased, userId, 'Completed', 'NOW()'],
       );
       await pool.query(
         `INSERT INTO order_products (
@@ -454,7 +456,7 @@ const seedOrders = async (total, itemsIdRange) => {
             "quantity")
           VALUES
           ($1, $2, $3)`,
-        [index, productId, orderQuantity],
+        [indexOneBased, productId, orderQuantity],
       );
     } catch (error) {
       spinnies.stopAll('fail');
