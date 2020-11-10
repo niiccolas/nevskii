@@ -2,8 +2,8 @@ name: Deploy STAGING
 on: [pull_request, workflow_dispatch]
 
 jobs:
-  api:
-    name: deploy API
+  deploy:
+    name: Deploy API+WEB
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -23,11 +23,11 @@ jobs:
           heroku_email: ${{secrets.HEROKU_API_KEY}}
         env:
           HD_APP_BASE: 'packages/web'
-      - name: Trigger next workflow
+      - name: Trigger Audit
         if: success()
         uses: peter-evans/repository-dispatch@v1
         with:
           token: ${{ secrets.GHACTIONS_REPO_TOKEN }}
           repository: ${{ github.repository }}
-          event-type: trigger-lighthouse-audit
+          event-type: deploy-triggered-audit
           client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
