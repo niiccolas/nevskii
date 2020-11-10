@@ -5,7 +5,7 @@ import {
   getVinyl,
   updateVinyl,
   deleteVinyl,
-} from '../controllers/vinyl.controller';
+} from '../../controllers/vinyl.controller';
 
 const router = Router();
 

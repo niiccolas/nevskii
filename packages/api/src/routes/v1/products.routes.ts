@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getProducts, getProduct } from '../controllers/products.controller';
+import { getProducts, getProduct } from '../../controllers/products.controller';
 
 const router = Router();
 

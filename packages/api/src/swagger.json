@@ -1,0 +1,253 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "nevskii-api",
+    "description": "API for the nevskii platform.",
+    "version": "1.0.0",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "servers": [
+    {
+      "url": "/v1/",
+      "description": "localhost"
+    },
+    {
+      "url": "https://nevskii-api.herokuapp.com/v1/",
+      "description": "Staging server"
+    },
+    {
+      "url": "https://prod-nevskii-api.herokuapp.com/v1/",
+      "description": "Production server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "products",
+      "description": "Accessing nevskii-db Products"
+    }
+  ],
+  "paths": {
+    "/products": {
+      "get": {
+        "summary": "Get Products list",
+        "tags": ["products"],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "title",
+            "schema": { "type": "string" },
+            "description": "Title of product(s) searched (case insensitive)"
+          },
+          {
+            "in": "query",
+            "name": "size",
+            "schema": { "type": "number", "default": 10 },
+            "description": "Number of products per page"
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "schema": { "type": "number", "default": 1, "example": 3 },
+            "description": "Page to display"
+          },
+          {
+            "in": "query",
+            "name": "order",
+            "schema": { "type": "string", "enum": ["asc", "desc"] },
+            "description": "Order of results"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of Products",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Products"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/{id}": {
+      "get": {
+        "summary": "Get Product with full details",
+        "tags": ["products"],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "default": 12
+            },
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of Product to be retrieved"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A Product object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Product": {
+        "type": "object",
+        "properties": {
+          "title": { "type": "string" },
+          "titleOriginal": { "type": "string" },
+          "price": {
+            "type": "string",
+            "description": "price in cents stored as BIGINT",
+            "nullable": true
+          },
+          "synopsis": { "type": "string", "nullable": true },
+          "productionYear": { "type": "number", "nullable": true },
+          "createdAt": { "type": "string" },
+          "ean": { "type": "string", "nullable": true },
+          "imageUrl": { "type": "string", "nullable": true },
+          "availability": { "type": "string" },
+          "stockStatus": { "type": "string" },
+          "publisher": { "type": "string" },
+          "distributor": { "type": "string" },
+          "ageRating": { "type": "string" },
+          "mediaType": { "type": "string" },
+          "countries": { "type": "string" },
+          "authors": { "type": "string" },
+          "bonusContent": { "type": "string", "nullable": true },
+          "minutes": { "type": "number" },
+          "dvdZone": { "type": "string" },
+          "category": { "type": "string" },
+          "formatTv": { "type": "string" },
+          "formatFilm": { "type": "string" },
+          "actors": { "type": "string" },
+          "audioTracks": { "type": "string" },
+          "subcategories": { "type": "string" },
+          "genres": { "type": "string" },
+          "subtitles": { "type": "string" },
+          "collection": { "type": "string", "nullable": true }
+        },
+        "example": {
+          "title": "Akira",
+          "titleOriginal": "Akira",
+          "price": "1490",
+          "synopsis": "Neo-Tokyo, an 2019. Détruite trente ans plus tôt par une mystérieuse explosion, la mégalopole japonaise renaît de ses cendres et se prépare à héberger les Jeux Olympiques. Les oubliés de la reconstruction manifestent chaque jour contre le pouvoir en place, tandis que les plus jeunes trouvent refuge dans la drogue et la baston. Parmi eux, Kaneda et Tetsuo, amis d'enfance, et membres d'un gang de jeunes motards. Au coeur des travaux du stade, une section spéciale de l'armée poursuit en grand secret le projet Akira, tandis que les dissidents cherchent à percer le mystère qui se cache derrière ce nom.",
+          "productionYear": 1988,
+          "createdAt": "2012-05-16T00:00:00.000Z",
+          "ean": "5413505380600",
+          "imageUrl": "https://images.epagine.fr/600/5413505380600_vid.jpg",
+          "availability": "Disponible",
+          "stockStatus": "Sur commande",
+          "publisher": "Dybex",
+          "distributor": "OSP",
+          "ageRating": "Tous publics",
+          "mediaType": "DVD",
+          "countries": "japon",
+          "authors": "Katsuhiro Otomo",
+          "bonusContent": "Contient 2 doublages français :\n- le doublage version 1.0 (d'origine), en DD 2.0\n- le doublage version 2.0 (dénuée des erreurs historiques de traduction, et avec l'ensemble des voix françaises originales), en DD 5.1\nMaster d'origine en Haute Définition\n\nTeasers\nBandes-annonces Dybex",
+          "minutes": 125,
+          "dvdZone": "2",
+          "category": "Animation",
+          "formatTv": "16/9 Anamorphique",
+          "formatFilm": "1.85",
+          "actors": "Alexandre Gillet;Barbara Tissier;Mathias Kozlowski",
+          "audioTracks": "Français DD 2.0;Français DD 5.1;Japonais DD 2.0;Japonais DD 5.1",
+          "subcategories": "Manga",
+          "genres": "Action / Aventure;Drame;Science-Fiction",
+          "subtitles": "Français;Néerlandais",
+          "collections": null
+        }
+      },
+      "Products": {
+        "type": "object",
+        "properties": {
+          "page": { "type": "number", "example": 1 },
+          "itemsPerPage": { "type": "number", "example": 1 },
+          "itemsTotal": { "type": "number", "example": 3 },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductsItem"
+            }
+          }
+        }
+      },
+      "ProductsItem": {
+        "type": "object",
+        "properties": {
+          "idProduct": { "type": "number" },
+          "title": { "type": "string" },
+          "titleOriginal": { "type": "string" },
+          "price": {
+            "type": "string",
+            "description": "price in cents stored as BIGINT",
+            "nullable": true
+          },
+          "synopsis": { "type": "string", "nullable": true },
+          "productionYear": { "type": "number", "nullable": true },
+          "createdAt": { "type": "string" },
+          "ean": { "type": "string", "nullable": true },
+          "imageUrl": { "type": "string", "nullable": true },
+          "authors": {
+            "type": "object",
+            "properties": {
+              "idProductAuthors": { "type": "number" }
+            }
+          },
+          "mediaType": {
+            "type": "object",
+            "properties": {
+              "idMediaType": { "type": "number" },
+              "name": { "type": "string" }
+            }
+          },
+          "availability": {
+            "type": "object",
+            "properties": {
+              "idAvailability": { "type": "number" },
+              "name": { "type": "string" }
+            }
+          }
+        },
+        "example": {
+          "idProduct": 21,
+          "title": "chicken run",
+          "titleOriginal": "Chicken Run",
+          "price": "1290",
+          "synopsis": "Condamnées à pondre puis à mourir, les habitants à plumes du poulailler Tweedy n'ont qu'un seul mot au bec : EVASION. L'intrépide Ginger et ses consoeurs multiplient les tentatives sans grand succès. Or le temps leur est compté depuis que Mme Tweedy, l'affreuse propriétaire de la ferme, a décidé que les cocottes finiraient bientôt en matières premières dans la fabrication de tourtes à la volaille. Le salut leur vient du ciel lorsqu'atterrit Rocky, coq frimeur et beau parleur, qui prétend que les poules peuvent voler. L'armada de poulettes va alors s'entraîner dur pour réussir l'opération de la dernière chance.",
+          "productionYear": 2000,
+          "createdAt": "2001-06-27T00:00:00.000Z",
+          "ean": "3388334506601",
+          "imageUrl": "https://images.epagine.fr/601/3388334506601_vid.jpg",
+          "authors": {
+            "idProductAuthors": 24
+          },
+          "mediaType": {
+            "idMediaType": 0,
+            "name": "DVD"
+          },
+          "availability": {
+            "idAvailability": 0,
+            "name": "Disponible"
+          }
+        }
+      }
+    }
+  }
+}
