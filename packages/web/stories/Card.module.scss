@@ -1,0 +1,42 @@
+@import "~rfs/scss";
+@import "../styles/colors.common.scss";
+@import "../styles/spaces.common.scss";
+
+.Card {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: #ffffff;
+
+  @include rfs(3.5rem, line-height);
+}
+
+.Card:hover {
+  cursor: pointer;
+}
+
+.Card__header {
+  @include font-size(2rem);
+
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1;
+  margin: 0;
+  padding: 0;
+  color: $black;
+  font-weight: bold;
+}
+
+.Card__header:hover {
+  cursor: pointer;
+}
+
+.Card__details {
+  font-weight: normal;
+}
+
+.Card__image {
+  width: 100%;
+  opacity: 0.5;
+}
