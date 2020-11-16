@@ -1,5 +1,5 @@
 // Next.js global styles
-import '../styles/global.common.scss';
+import '../styles/global.scss';
 
 export const parameters = {
   options: {

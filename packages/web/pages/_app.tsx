@@ -1,5 +1,5 @@
 import App from 'next/app';
 
-import '../styles/global.common.scss';
+import '../styles/global.scss';
 
 export default App;
