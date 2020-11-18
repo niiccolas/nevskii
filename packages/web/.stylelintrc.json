@@ -7,7 +7,6 @@
     "no-duplicate-selectors": true,
     "color-hex-case": "lower",
     "color-hex-length": "long",
-    "color-named": "never",
     "property-no-unknown": true,
     "at-rule-no-unknown": null,
     "plugin/selector-bem-pattern": {
