@@ -1,0 +1,35 @@
+@import "@Styles/utils.scss";
+
+.Navbar {
+  display: flex;
+  grid-auto-flow: column;
+  align-items: center;
+  height: 4rem;
+}
+
+.Navbar__link {
+  @media screen and (max-width: 560px) {
+    display: none;
+  }
+
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: $space-s;
+  align-items: center;
+  padding: $space-m;
+  color: _color(neutral, light);
+  cursor: pointer;
+
+  &:hover {
+    color: _color(highlight);
+  }
+}
+
+.Navbar__hamburger {
+  display: none;
+  cursor: pointer;
+
+  @media screen and (max-width: 560px) {
+    display: block;
+  }
+}

@@ -11,6 +11,8 @@ module.exports = withSass({
     config.resolve.alias = {
       ...config.resolve.alias,
       ['@Components']: path.resolve(__dirname, 'src/components'),
+      ['@Atoms']: path.resolve(__dirname, 'src/components/atoms'),
+      ['@Molecules']: path.resolve(__dirname, 'src/components/molecules'),
       ['@Styles']: path.resolve(__dirname, 'src/styles'),
     };
 

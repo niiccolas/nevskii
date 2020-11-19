@@ -18,4 +18,17 @@ export const parameters = {
     },
   },
   actions: { argTypesRegex: '^on[A-Z].*' },
+  backgrounds: {
+    default: 'dark',
+    values: [
+      {
+        name: 'dark',
+        value: '#2a2a2a',
+      },
+      {
+        name: 'light',
+        value: '#f2f2f2',
+      },
+    ],
+  },
 };
