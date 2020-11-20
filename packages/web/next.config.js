@@ -11,9 +11,17 @@ module.exports = withSass({
     config.resolve.alias = {
       ...config.resolve.alias,
       ['@Components']: path.resolve(__dirname, 'src/components'),
-      ['@Atoms']: path.resolve(__dirname, 'src/components/atoms'),
-      ['@Molecules']: path.resolve(__dirname, 'src/components/molecules'),
-      ['@Styles']: path.resolve(__dirname, 'src/styles'),
+      ['@Atoms']: path.resolve(__dirname, 'src/components/atoms/index.ts'),
+      ['@Molecules']: path.resolve(
+        __dirname,
+        'src/components/molecules/index.ts',
+      ),
+      ['@Organisms']: path.resolve(
+        __dirname,
+        'src/components/organisms/index.ts',
+      ),
+      ['@utils']: path.resolve(__dirname, 'src/utils/index.ts'),
+      ['@styles']: path.resolve(__dirname, 'src/styles'),
     };
 
     return config;
