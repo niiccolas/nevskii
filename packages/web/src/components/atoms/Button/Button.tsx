@@ -1,5 +1,6 @@
 import React from 'react';
-import './button.css';
+
+import './Button.scss';
 
 export interface ButtonProps {
   /**
@@ -22,6 +23,7 @@ export interface ButtonProps {
    * Optional click handler
    */
   onClick?: () => void;
+  class?: string;
 }
 
 /**
@@ -34,11 +36,11 @@ export const Button: React.FC<ButtonProps> = ({
   label,
   ...props
 }) => {
-  const mode = primary ? 'storybook-button--primary' : 'storybook-button--secondary';
+  const mode = primary ? 'Button--primary' : 'Button--secondary';
   return (
     <button
       type="button"
-      className={['storybook-button', `storybook-button--${size}`, mode].join(' ')}
+      className={['Button', `Button--${size}`, mode].join(' ')}
       style={{ backgroundColor }}
       {...props}
     >

@@ -1,0 +1,58 @@
+@import "~rfs/scss";
+@import "@styles/utils.scss";
+
+.Card {
+  position: relative;
+  // width: 50%;
+  margin: 2rem;
+  padding: 1.5rem;
+  overflow: hidden;
+  background-color: _color(neutral);
+  border: 1px solid white;
+  border-radius: 4px;
+
+  @include rfs(3.5rem, line-height);
+}
+
+.Card__header {
+  @include font-size(2rem);
+
+  position: absolute;
+  // top: 1rem;
+  // left: 1rem;
+  z-index: 1;
+  margin: 0;
+  padding: 0;
+  color: _color(neutral, lighter);
+  font-weight: bold;
+}
+
+.Card:hover {
+  cursor: pointer;
+
+  .Card__header {
+    color: _color(highlight, dark);
+  }
+}
+
+.Card__details {
+  font-weight: normal;
+}
+
+.Card__image {
+  width: 100%;
+  transform: scale(1.4);
+  opacity: 0.5;
+}
+
+.Card::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(180deg, rgba(2, 0, 36, 0.87) 0%, rgba(63, 63, 121, 0.781937893081761) 35%, rgba(0, 212, 255, 0) 100%);
+  content: "";
+}

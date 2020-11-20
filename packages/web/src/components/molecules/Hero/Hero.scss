@@ -1,0 +1,21 @@
+@import "~rfs/scss";
+@import "@styles/utils.scss";
+
+.Hero {
+  position: relative;
+  margin: 2rem;
+  padding: 0;
+  overflow: hidden;
+  background-color: _color(neutral);
+  // border: 1px solid white;
+  border-radius: 4px;
+
+  @include rfs(3.5rem, line-height);
+}
+
+.Hero__cta {
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+  color: red;
+}

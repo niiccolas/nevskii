@@ -1,10 +1,10 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
-import { Navbar, NavbarProps } from '@Molecules/Navbar';
+import { Navbar, NavbarProps } from '@Molecules';
 
 export default {
-  title: 'Navbar',
+  title: 'Molecules/Navbar',
   component: Navbar,
 } as Meta;
 

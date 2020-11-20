@@ -1,6 +1,13 @@
 import React from 'react';
 import Link from 'next/link';
-import { FaSearch, FaShoppingCart, FaUser, FaBars } from 'react-icons/fa';
+import {
+  FaSearch,
+  FaShoppingCart,
+  FaUser,
+  FaBars,
+  FaSignInAlt,
+  FaUserPlus,
+} from 'react-icons/fa';
 
 import './Navbar.scss';
 
@@ -8,18 +15,20 @@ const NAV_ICONS = {
   search: FaSearch,
   user: FaUser,
   cart: FaShoppingCart,
+  signIn: FaSignInAlt,
+  signUp: FaUserPlus,
 };
 
-interface Link {
+export interface NavLink {
   label?: string;
   href?: string;
-  icon?: 'user' | 'search' | 'cart';
+  icon?: 'user' | 'search' | 'cart' | 'signIn' | 'signUp';
 }
 
 export interface NavbarProps {
   children?: any;
   onClick?: () => void;
-  navLinks: Link[];
+  navLinks: NavLink[];
 }
 
 /**
@@ -29,7 +38,7 @@ export const Navbar: React.FC<NavbarProps> = ({ navLinks = [] }) => {
   return (
     <nav className="Navbar">
       {navLinks.map(({ href = '#', label, icon }, idx) => (
-        <Link href={href} prefetch={href !== '#'} key={idx}>
+        <Link href={href} prefetch={false} key={idx}>
           <div className="Navbar__link">
             {icon && React.createElement(NAV_ICONS[icon])}
             {label}
