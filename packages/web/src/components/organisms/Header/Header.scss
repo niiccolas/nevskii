@@ -2,28 +2,38 @@
 
 .Header {
   display: flex;
+  gap: 1rem;
   align-items: center;
   justify-content: space-between;
-  padding: 15px 20px;
+  padding: 10px 20px;
   background-color: _color(primary);
-  // font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-svg {
-  display: inline-block;
-  vertical-align: top;
+.Header__logo a {
+  display: flex;
+  color: black;
+  font-weight: 100;
+  font-size: 2rem;
+  text-decoration: none;
 }
 
-h1 {
-  display: inline-block;
-  margin: 6px 0 6px 10px;
-  font-weight: 900;
-  font-size: 20px;
-  line-height: 1;
-  vertical-align: top;
+.Header__logo--tablet {
+  @media screen and (max-width: 719px) {
+    display: none;
+  }
 }
 
-button + button {
-  margin-left: 10px;
+.Header__logo--mobile {
+  @media screen and (min-width: 720px) {
+    display: none;
+  }
+
+  display: inline-block;
+  width: 3rem;
+  height: 3rem;
+  font-weight: bold;
+  line-height: 3rem;
+  text-align: center;
+  border: 1px solid black;
 }

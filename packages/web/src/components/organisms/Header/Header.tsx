@@ -8,9 +8,11 @@ export interface HeaderProps {
   onLogin: () => void;
   onLogout: () => void;
   onCreateAccount: () => void;
+  logo: string;
+  logoMobile: string;
 }
 
-export const Header: React.FC<HeaderProps> = ({ user }) => {
+export const Header: React.FC<HeaderProps> = ({ user, logo }) => {
   const userNavLinks: NavLink[] = user
     ? [{ icon: 'user', href: '/profile' }]
     : [{ icon: 'signIn' }, { icon: 'signUp' }];
@@ -36,10 +38,13 @@ export const Header: React.FC<HeaderProps> = ({ user }) => {
   return (
     <header>
       <div className="Header">
-        <h1>Nevskii</h1>
-        <Navbar
-          navLinks={[{ icon: 'search' }, { icon: 'cart' }, ...userNavLinks]}
-        />
+        <h1 className="Header__logo">
+          <a href="/">
+            <span className="Header__logo--tablet">{logo}</span>
+            <span className="Header__logo--mobile">K</span>
+          </a>
+        </h1>
+        <Navbar navLinks={[{ icon: 'cart' }, ...userNavLinks]} />
       </div>
     </header>
   );

@@ -24,6 +24,7 @@ export interface ButtonProps {
    */
   onClick?: () => void;
   class?: string;
+  type: 'button' | 'submit';
 }
 
 /**
@@ -32,6 +33,7 @@ export interface ButtonProps {
 export const Button: React.FC<ButtonProps> = ({
   primary = false,
   size = 'medium',
+  type = 'button',
   backgroundColor,
   label,
   ...props
@@ -39,7 +41,7 @@ export const Button: React.FC<ButtonProps> = ({
   const mode = primary ? 'Button--primary' : 'Button--secondary';
   return (
     <button
-      type="button"
+      type={type}
       className={['Button', `Button--${size}`, mode].join(' ')}
       style={{ backgroundColor }}
       {...props}

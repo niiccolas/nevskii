@@ -1,5 +1,6 @@
 import React from 'react';
 import { formatPrice } from '@utils';
+import CSS from 'csstype';
 
 import './Card.scss';
 
@@ -9,6 +10,7 @@ type CardProps = {
   alt?: string;
   mediaType: string;
   price: string;
+  style?: CSS.Properties;
 };
 
 export const Card: React.FC<CardProps> = ({
@@ -17,15 +19,22 @@ export const Card: React.FC<CardProps> = ({
   alt,
   mediaType,
   price,
+  style,
 }) => {
   return (
-    <article className="Card" itemScope itemType="http://schema.org/Product">
+    <article
+      className="Card"
+      itemScope
+      itemType="http://schema.org/Product"
+      style={style}
+    >
       <a href="#">
         <div className="Card__header">
           <h2 itemProp="name">{title}</h2>
           <div className="Card__details">
-            <p>{mediaType.toUpperCase()}</p>
-            <p>{formatPrice(price) + '€'}</p>
+            <p>
+              {mediaType.toUpperCase()} - {formatPrice(price) + '€'}
+            </p>
           </div>
         </div>
         <img

@@ -36,9 +36,3 @@ Small.args = {
   size: 'small',
   label: 'Button',
 };
-
-export const Animated = Template.bind({});
-Animated.args = {
-  // size: 'small',
-  label: 'Button',
-};
