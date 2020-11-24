@@ -19,15 +19,6 @@ interface ProductsItem {
   };
 }
 
-interface Props {
-  products: {
-    page: number;
-    itemsPerPage: number;
-    itemsTotal: number;
-    items: ProductsItem[];
-  };
-}
-
 export interface ListingProps {
   products: {
     page: number;

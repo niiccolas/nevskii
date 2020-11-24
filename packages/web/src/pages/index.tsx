@@ -33,8 +33,8 @@ interface Props {
 export const getServerSideProps: GetServerSideProps<Props> = async context => {
   const adress: string =
     NEVSKII_API +
-    '/products/?page=34' +
-    (context.query.title ? `?title=${context.query.title}` : '');
+    '/products/' +
+    (context.query.title && `?title=${context.query.title}`);
 
   const res = await fetch(adress);
   const products = (await res.json()) || {};

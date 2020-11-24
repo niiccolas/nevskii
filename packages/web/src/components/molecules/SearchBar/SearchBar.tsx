@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 
 import { Input, Button } from '@Atoms';
 
@@ -17,11 +18,12 @@ export const SearchBar: React.FC<SearchBarProps> = ({
   active = false,
   searchLabel = 'Search',
 }) => {
+  const router = useRouter();
   const [searchQuery, setSearchQuery] = useState('');
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    alert('Searching for: ' + searchQuery);
+    router.push('?title=' + searchQuery);
   };
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>) =>
