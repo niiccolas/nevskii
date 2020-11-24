@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import {
   FaSearch,
@@ -8,6 +8,8 @@ import {
   FaSignInAlt,
   FaUserPlus,
 } from 'react-icons/fa';
+import CSS from 'csstype';
+
 import { SearchBar } from '@Molecules';
 
 import './Navbar.scss';
@@ -30,7 +32,9 @@ export interface NavbarProps {
   children?: any;
   onClick?: () => void;
   navLinks: NavLink[];
-  style?: Record<string, any>;
+  style?: CSS.Properties;
+  withSearch: boolean;
+  searchBtnLabel: string;
 }
 
 /**
@@ -39,21 +43,12 @@ export interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({
   navLinks = [],
   style = {},
+  withSearch = false,
+  searchBtnLabel = 'Search',
 }) => {
-  const [showSearch, setShowSearch] = useState(false);
-
   return (
-    <nav
-      className="Navbar"
-      style={{
-        ...(showSearch && { flex: 1 }),
-        ...style,
-      }}
-    >
-      <SearchBar active={showSearch} />
-      <div className="Navbar__link">
-        <FaSearch onClick={() => setShowSearch(!showSearch)} />
-      </div>
+    <nav className="Navbar" style={style}>
+      <SearchBar active={withSearch} searchBtnLabel={searchBtnLabel} />
       {navLinks.map(({ href = '#', label, icon }, idx) => (
         <Link href={href} prefetch={false} key={idx}>
           <div className="Navbar__link">

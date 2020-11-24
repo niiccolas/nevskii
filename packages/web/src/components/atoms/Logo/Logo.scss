@@ -1,0 +1,29 @@
+@import "@styles/utils.scss";
+
+.Logo {
+  display: flex;
+  color: black;
+  font-weight: 100;
+  font-size: 2rem;
+  text-decoration: none;
+}
+
+.Logo--tablet {
+  @media screen and (max-width: 719px) {
+    display: none;
+  }
+}
+
+.Logo--mobile {
+  @media screen and (min-width: 720px) {
+    display: none;
+  }
+
+  display: inline-block;
+  width: 3rem;
+  height: 3rem;
+  font-weight: bold;
+  line-height: 3rem;
+  text-align: center;
+  border: 1px solid black;
+}

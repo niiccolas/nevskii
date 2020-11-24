@@ -10,6 +10,10 @@ export default {
   argTypes: {
     backgroundColor: { control: 'color' },
   },
+  args: {
+    primary: true,
+    placeHolder: 'Placeholder text…',
+  },
 } as Meta;
 
 const Template: Story<InputProps> = args => <Input {...args} />;
@@ -17,22 +21,20 @@ const Template: Story<InputProps> = args => <Input {...args} />;
 export const Primary = Template.bind({});
 Primary.args = {
   primary: true,
-  label: 'Primary Input',
+  placeHolder: 'Primary input placeholder…',
 };
 
 export const Secondary = Template.bind({});
 Secondary.args = {
-  label: 'Secondary Input',
+  primary: false,
 };
 
 export const Large = Template.bind({});
 Large.args = {
   size: 'large',
-  label: 'Input',
 };
 
 export const Small = Template.bind({});
 Small.args = {
   size: 'small',
-  label: 'Input',
 };

@@ -14,9 +14,6 @@ export const Text = Template.bind({});
 Text.args = {
   navLinks: [
     {
-      label: 'Recherche',
-    },
-    {
       label: 'Profil',
     },
     {
@@ -29,9 +26,6 @@ export const Icons = Template.bind({});
 Icons.args = {
   navLinks: [
     {
-      icon: 'search',
-    },
-    {
       icon: 'user',
     },
     {
@@ -40,13 +34,27 @@ Icons.args = {
   ],
 };
 
-export const Both = Template.bind({});
-Both.args = {
+export const TextAndIcons = Template.bind({});
+TextAndIcons.args = {
   navLinks: [
     {
-      label: 'Search',
-      icon: 'search',
+      label: 'Bestsellers',
     },
+    {
+      label: 'Profile',
+      icon: 'user',
+    },
+    {
+      label: 'Cart',
+      icon: 'cart',
+    },
+  ],
+};
+
+export const WithSearchBar = Template.bind({});
+WithSearchBar.args = {
+  withSearch: true,
+  navLinks: [
     {
       label: 'Bestsellers',
     },

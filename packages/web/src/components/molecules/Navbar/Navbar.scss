@@ -2,9 +2,14 @@
 
 .Navbar {
   display: flex;
+  flex: 1;
   gap: 0.5em;
   align-items: center;
-  height: 4rem;
+  height: 3.5rem;
+
+  @media screen and (min-width: 720px) {
+    flex: 0.8;
+  }
 }
 
 .Navbar__link {
@@ -16,7 +21,7 @@
   grid-auto-flow: column;
   grid-gap: $space-s;
   align-items: center;
-  padding: $space-m;
+  padding-left: $space-m;
   color: _color(neutral, lighter);
   cursor: pointer;
 

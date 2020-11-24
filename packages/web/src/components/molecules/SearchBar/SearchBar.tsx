@@ -9,14 +9,14 @@ export interface SearchBarProps {
   primary?: boolean;
   size?: 'small' | 'medium' | 'large';
   active: boolean;
-  searchLabel: string;
+  searchBtnLabel: string;
 }
 
 export const SearchBar: React.FC<SearchBarProps> = ({
   primary = true,
   size = 'medium',
   active = false,
-  searchLabel = 'Search',
+  searchBtnLabel = 'Search',
 }) => {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState('');
@@ -29,15 +29,24 @@ export const SearchBar: React.FC<SearchBarProps> = ({
   const handleChange = (e: React.FormEvent<HTMLInputElement>) =>
     setSearchQuery(e.currentTarget.value);
 
-  return active ? (
-    <form className="SearchBar" action="/" onSubmit={handleSubmit}>
-      <Input
-        primary={primary}
-        size={size}
-        value={searchQuery}
-        onChange={handleChange}
-      />
-      <Button primary={primary} label={searchLabel} size={size} type="submit" />
-    </form>
-  ) : null;
+  return (
+    <div className={'SearchBar'}>
+      {active && (
+        <form className="SearchBar" action="/" onSubmit={handleSubmit}>
+          <Input
+            primary={primary}
+            size={size}
+            value={searchQuery}
+            onChange={handleChange}
+          />
+          <Button
+            primary={primary}
+            label={searchBtnLabel}
+            size={size}
+            type="submit"
+          />
+        </form>
+      )}
+    </div>
+  );
 };

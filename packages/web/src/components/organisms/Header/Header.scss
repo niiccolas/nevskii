@@ -9,31 +9,3 @@
   background-color: _color(primary);
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
-
-.Header__logo a {
-  display: flex;
-  color: black;
-  font-weight: 100;
-  font-size: 2rem;
-  text-decoration: none;
-}
-
-.Header__logo--tablet {
-  @media screen and (max-width: 719px) {
-    display: none;
-  }
-}
-
-.Header__logo--mobile {
-  @media screen and (min-width: 720px) {
-    display: none;
-  }
-
-  display: inline-block;
-  width: 3rem;
-  height: 3rem;
-  font-weight: bold;
-  line-height: 3rem;
-  text-align: center;
-  border: 1px solid black;
-}

@@ -3,7 +3,7 @@ import { Card } from '@Molecules';
 
 import './Listing.scss';
 
-interface ProductsItem {
+export interface ProductsItem {
   idProduct: number;
   title: string;
   titleOriginal: string;
@@ -15,8 +15,13 @@ interface ProductsItem {
   imageUrl: string;
   authors: object;
   mediaType: {
+    idMediaType: number;
     name: string;
   };
+  availability: {
+    idAvailability: number;
+    name: string;
+  } | null;
 }
 
 export interface ListingProps {

@@ -1,25 +1,9 @@
 import Head from 'next/head';
 import { GetServerSideProps, NextPage } from 'next';
-import { Card, Hero } from '@Molecules';
-import { Header, Listing } from '@Organisms';
-import { Input, Button } from '@Atoms';
 const { NEVSKII_API } = process.env;
 
-interface ProductsItem {
-  idProduct: number;
-  title: string;
-  titleOriginal: string;
-  price: string;
-  synopsis: string;
-  productionYear: number;
-  createdAt: string;
-  ean: string;
-  imageUrl: string;
-  authors: object;
-  mediaType: {
-    name: string;
-  };
-}
+import { Hero } from '@Molecules';
+import { Header, Listing, ProductsItem } from '@Organisms';
 
 interface Props {
   products: {
@@ -31,10 +15,8 @@ interface Props {
 }
 
 export const getServerSideProps: GetServerSideProps<Props> = async context => {
-  const adress: string =
-    NEVSKII_API +
-    '/products/' +
-    (context.query.title && `?title=${context.query.title}`);
+  let adress: string = NEVSKII_API + 'products/';
+  if (context.query.title) adress += `?title=${context.query.title}`;
 
   const res = await fetch(adress);
   const products = (await res.json()) || {};
