@@ -1,0 +1,40 @@
+@import "@styles/utils.scss";
+
+.Navbar {
+  display: flex;
+  flex: 1;
+  gap: 0.5em;
+  align-items: center;
+  height: 3.5rem;
+
+  @media screen and (min-width: 720px) {
+    flex: 0.8;
+  }
+}
+
+.Navbar__link {
+  @media screen and (max-width: 720px) {
+    display: none;
+  }
+
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: $space-s;
+  align-items: center;
+  padding-left: $space-m;
+  color: _color(neutral, lighter);
+  cursor: pointer;
+
+  &:hover {
+    color: _color(highlight);
+  }
+}
+
+.Navbar__hamburger {
+  display: none;
+  cursor: pointer;
+
+  @media screen and (max-width: 720px) {
+    display: block;
+  }
+}

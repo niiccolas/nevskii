@@ -1,0 +1,30 @@
+@import "@styles/utils.scss";
+
+.Listing {
+  padding: 0 2rem;
+  padding-bottom: 2rem;
+}
+
+.Listing__header {
+  width: 100%;
+  margin-top: 0.5em;
+  margin-bottom: 0.3em;
+  color: _color(neutral, lighter);
+  font-weight: 100;
+  font-size: 2.5rem;
+  line-height: 3.5rem;
+  letter-spacing: 0;
+  border-bottom: 2px solid white;
+}
+
+.Listing__items {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  align-items: stretch;
+
+  @media screen and (min-width: 720px) {
+    grid-gap: 30px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+}

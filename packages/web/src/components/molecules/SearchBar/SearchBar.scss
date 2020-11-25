@@ -1,0 +1,16 @@
+@import "@styles/utils.scss";
+
+.SearchBar {
+  display: flex;
+  flex-basis: 100%;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: flex-end;
+  height: 3.5em;
+  color: white;
+}
+
+.SearchBar__icon:hover {
+  color: _color(highlight);
+  cursor: pointer;
+}

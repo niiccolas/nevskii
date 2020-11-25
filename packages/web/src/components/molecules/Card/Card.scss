@@ -1,0 +1,63 @@
+@import "~rfs/scss";
+@import "@styles/utils.scss";
+
+.Card {
+  position: relative;
+  padding: 1rem;
+  overflow: hidden;
+  background-color: _color(neutral);
+  border-radius: 4px;
+}
+
+.Card__header {
+  @include font-size(1rem);
+  @include rfs(2rem, line-height);
+
+  position: absolute;
+  z-index: 1;
+  display: inline;
+  margin: 0;
+  padding: 0;
+  color: _color(neutral, lighter);
+  transition: color 0.3s ease-out;
+}
+
+.Card::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.2) 50%, rgba(0, 0, 0, 0.9) 100%); /* W3C */
+  content: "";
+}
+
+.Card__image {
+  width: 100%;
+  object-position: "center";
+  transform: scale(2);
+  opacity: 0.25;
+  transition: opacity 0.3s ease-out;
+}
+
+.Card:hover {
+  cursor: pointer;
+
+  .Card__header {
+    color: _color(primary);
+    text-shadow: 0 2px 2px black;
+  }
+
+  .Card__image {
+    opacity: 0.9;
+  }
+
+  .Card::after {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.2) 50%, rgba(0, 0, 0, 1) 100%); /* W3C */
+  }
+}
+
+.Card__details {
+  font-weight: normal;
+}

@@ -1,0 +1,45 @@
+@import "@styles/utils.scss";
+
+.Hero {
+  position: relative;
+  padding: 0;
+  font-family: "Karla", sans-serif;
+  border-radius: 2px;
+}
+
+.Hero::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.65) 100%); /* W3C */
+  content: "";
+}
+
+.Hero__cta {
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+  z-index: 5;
+}
+
+.Hero__header {
+  position: absolute;
+  top: 1.5rem;
+  left: 2rem;
+  z-index: 5;
+  color: white;
+}
+
+.Hero__headerTitle {
+  font-weight: 900;
+  font-size: 3rem;
+  line-height: 3.5rem;
+}
+
+.Hero__headerSubtitle {
+  color: white;
+  font-size: 1.4rem;
+}

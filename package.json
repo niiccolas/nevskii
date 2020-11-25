@@ -8,6 +8,7 @@
   ],
   "scripts": {
     "web:dev": "yarn workspace @nevskii/web dev",
+    "storybook": "yarn workspace @nevskii/web storybook",
     "api": "yarn workspace @nevskii/api start",
     "api:dev": "yarn workspace @nevskii/api dev",
     "seed": "yarn workspace @nevskii/db seed"
