@@ -1,0 +1,43 @@
+@import "@styles/utils.scss";
+
+.Badge {
+  display: inline-block;
+  padding: 0 7px;
+  font-weight: 600;
+  line-height: 22px;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  user-select: none;
+}
+
+.Badge--animated {
+  transition: background-color 0.2s ease-in-out 0s, box-shadow 0.2s ease-in-out 0s, color 0.2s ease-in-out 0s;
+}
+
+.Badge--capsule {
+  border-radius: 12px;
+}
+
+.Badge--secondary {
+  background-color: transparent !important;
+  border: 1px solid;
+}
+
+.Badge--linked:hover {
+  cursor: pointer;
+  filter: saturate(2);
+}
+
+.Badge--small {
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.Badge--medium {
+  font-size: 14px;
+}
+
+.Badge--large {
+  font-size: 18px;
+  line-height: 30px;
+}
