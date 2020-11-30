@@ -3,7 +3,8 @@
 
 .BadgeList {
   display: flex;
-  gap: $space-xs;
+  flex-wrap: wrap;
+  gap: 0 $space-xs;
   margin: 0;
   padding: 0;
 }
