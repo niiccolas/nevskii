@@ -1,0 +1,23 @@
+@import "~rfs/scss";
+@import "@styles/utils.scss";
+
+$stackSpacing: $space-m;
+
+.AvatarList {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+
+  &--stacked {
+    margin-left: $stackSpacing;
+  }
+}
+
+.AvatarList__item {
+  list-style: none;
+
+  &--stacked {
+    margin-left: -($stackSpacing);
+  }
+}

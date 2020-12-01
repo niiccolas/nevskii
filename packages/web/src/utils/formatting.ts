@@ -18,3 +18,11 @@ export const formatValuesList = (list: string, separator = ', '): string =>
     .split(';')
     .map(value => value[0].toUpperCase() + value.slice(1))
     .join(separator);
+
+/**
+ * Generate uppercase initials for a given name
+ *
+ * @param name
+ */
+export const formatInitials = (name: string): string =>
+  (name.match(/\b\w/g) || []).map(letter => letter.toUpperCase()).join('');
