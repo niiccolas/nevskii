@@ -11,25 +11,29 @@ export interface HeaderProps {
   onCreateAccount: () => void;
   logo: string;
   logoMobile: string;
+  className?: string;
 }
 
-export const Header: React.FC<HeaderProps> = ({ user, logo, logoMobile }) => {
+export const Header: React.FC<HeaderProps> = ({
+  user,
+  logo,
+  logoMobile,
+  className = '',
+}) => {
   const userNavLinks: NavLink[] = user
     ? [{ icon: 'user', href: '/profile' }]
     : [{ icon: 'signIn' }, { icon: 'signUp' }];
 
   return (
-    <header>
-      <div className="Header">
-        <h1>
-          <Logo logo={logo} logoMobile={logoMobile} prefetch={false} />
-        </h1>
-        <Navbar
-          navLinks={[{ icon: 'cart' }, ...userNavLinks]}
-          withSearch
-          searchBtnLabel="Search"
-        />
-      </div>
+    <header className={['Header', className].join(' ')}>
+      <h1>
+        <Logo logo={logo} logoMobile={logoMobile} prefetch={false} />
+      </h1>
+      <Navbar
+        navLinks={[{ icon: 'cart' }, ...userNavLinks]}
+        withSearch
+        searchBtnLabel="Search"
+      />
     </header>
   );
 };

@@ -23,7 +23,7 @@ export interface ButtonProps {
    * Optional click handler
    */
   onClick?: () => void;
-  class?: string;
+  className?: string;
   type: 'button' | 'submit';
 }
 
@@ -35,6 +35,7 @@ export const Button: React.FC<ButtonProps> = ({
   size = 'medium',
   type = 'button',
   backgroundColor,
+  className = '',
   label,
   ...props
 }) => {
@@ -42,7 +43,7 @@ export const Button: React.FC<ButtonProps> = ({
   return (
     <button
       type={type}
-      className={['Button', `Button--${size}`, mode].join(' ')}
+      className={['Button', `Button--${size}`, mode, className].join(' ')}
       style={{ backgroundColor }}
       {...props}
     >

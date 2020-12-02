@@ -1,0 +1,112 @@
+@import "@styles/utils.scss";
+
+.Product {
+  // display: flex; /* 2 */
+  // flex-direction: column; /* 3 */
+  // min-height: 100vh; /* 1 */
+
+  @media screen and (min-width: 720px) {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    gap: 2rem;
+    width: 70vw;
+    margin: auto;
+  }
+}
+
+.Product__titleOriginal {
+  font-size: 1rem;
+}
+
+.Product__year {
+  font-weight: 100;
+}
+
+.Product__poster {
+  @media screen and (min-width: 720px) {
+    justify-self: right;
+  }
+}
+
+.Product__posterImage {
+  display: block;
+  max-width: 100%;
+  padding: 0.5rem;
+  background: white;
+  border-radius: 8px;
+}
+
+.Product__title {
+  width: 100%;
+  color: _color(neutral, lighter);
+  font-weight: 600;
+  font-size: 3.5rem;
+  line-height: 3.5rem;
+
+  @media screen and (max-width: 720px) {
+    margin-top: 1rem;
+  }
+}
+
+.Product__author {
+  font-weight: 300;
+  font-size: 2rem;
+  line-height: 2.5rem;
+}
+
+.Product__items {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  align-items: stretch;
+
+  @media screen and (min-width: 720px) {
+    grid-gap: 30px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+}
+
+.Product__sectionHeader {
+  padding-top: 1rem;
+  font-weight: 600;
+  font-size: 2rem;
+}
+
+.Product__sectionCopy {
+  font-size: 1.2rem;
+}
+
+.Product__details {
+  margin: 0;
+  padding-top: 0.5rem;
+  font-weight: 100;
+  font-size: 0.9rem;
+  font-family: "IBM Plex Mono", monospace;
+  list-style: none;
+  padding-inline-start: 0;
+
+  &--bold {
+    font-weight: 400;
+  }
+}
+
+.Product__actorAvatar {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 50%;
+  filter: saturate(0);
+}
+
+.avatars {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 1rem 0;
+}
+
+.Product__CTA--wide {
+  @media screen and (max-width: 720px) {
+    width: 100%;
+  }
+}

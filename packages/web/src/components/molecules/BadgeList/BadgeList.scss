@@ -1,0 +1,14 @@
+@import "~rfs/scss";
+@import "@styles/utils.scss";
+
+.BadgeList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 $space-xs;
+  margin: 0;
+  padding: 0;
+}
+
+.BadgeList__item {
+  list-style: none;
+}
