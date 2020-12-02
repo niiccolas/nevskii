@@ -54,15 +54,30 @@ Default.args = {
     actorsAvatar: [
       { src: '', name: 'Alexandre Gillet' },
       {
-        src: '/oAhObnVhqsdJHO6vlMuW2a82Mwa.jpg',
+        src: 'https://image.tmdb.org/t/p/w200/oAhObnVhqsdJHO6vlMuW2a82Mwa.jpg',
         name: 'Barbara Tissier',
       },
-      { src: '/dCvzV3bEvINI2cmJxqP91JSnFDG.jpg', name: 'Gilbert Levy' },
-      { src: '/t5LGiaUxOhqoApmJumZOv0wDnLh.jpg', name: 'Mami Koyama' },
+      {
+        src: 'https://image.tmdb.org/t/p/w200/dCvzV3bEvINI2cmJxqP91JSnFDG.jpg',
+        name: 'Gilbert Levy',
+      },
+      {
+        src: 'https://image.tmdb.org/t/p/w200/t5LGiaUxOhqoApmJumZOv0wDnLh.jpg',
+        name: 'Mami Koyama',
+      },
       { src: '', name: 'Mathias Kozlowski' },
-      { src: '/xCAsuzc5OBQZWhG5WSZIyhBZ7xj.jpg', name: 'Mitsuo Iwata' },
-      { src: '/7usoPlvc9Xa1rDA2vxmVi0OvLDb.jpg', name: 'Nozomu Sasaki' },
-      { src: '/7eJeYv2OCHKAadeFVdabVkpWldo.jpg', name: 'Tesshou Genda' },
+      {
+        src: 'https://image.tmdb.org/t/p/w200/xCAsuzc5OBQZWhG5WSZIyhBZ7xj.jpg',
+        name: 'Mitsuo Iwata',
+      },
+      {
+        src: 'https://image.tmdb.org/t/p/w200/7usoPlvc9Xa1rDA2vxmVi0OvLDb.jpg',
+        name: 'Nozomu Sasaki',
+      },
+      {
+        src: 'https://image.tmdb.org/t/p/w200/7eJeYv2OCHKAadeFVdabVkpWldo.jpg',
+        name: 'Tesshou Genda',
+      },
     ],
   },
 };

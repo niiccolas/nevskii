@@ -28,3 +28,12 @@
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   }
 }
+
+.Listing__item {
+  position: relative;
+}
+
+.Listing__itemCTA {
+  position: absolute;
+  bottom: 0;
+}

@@ -1,6 +1,9 @@
 @import "@styles/utils.scss";
 
 .Layout__main {
-  padding: 1.5rem;
   padding-top: $header-height + 1.5rem;
+}
+
+.Layout__main--flush {
+  padding-top: $header-height;
 }

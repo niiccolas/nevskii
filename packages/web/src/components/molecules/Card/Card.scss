@@ -3,7 +3,6 @@
 
 .Card {
   position: relative;
-  padding: 1rem;
   overflow: hidden;
   background-color: _color(neutral);
   border-radius: 4px;
@@ -15,9 +14,13 @@
 
   position: absolute;
   z-index: 1;
-  display: inline;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
   margin: 0;
   padding: 0;
+  padding: 1rem;
   color: _color(neutral, lighter);
   transition: color 0.3s ease-out;
 }
@@ -44,11 +47,6 @@
 .Card:hover {
   cursor: pointer;
 
-  .Card__header {
-    color: _color(primary);
-    text-shadow: 0 2px 2px black;
-  }
-
   .Card__image {
     opacity: 0.9;
   }
@@ -58,6 +56,6 @@
   }
 }
 
-.Card__details {
-  font-weight: normal;
+.Card__header--push-to-bottom {
+  flex: 1;
 }

@@ -17,4 +17,5 @@ Default.args = {
   src: 'https://images.epagine.fr/341/5413505306341_vid.jpg',
   mediaType: 'DVD',
   price: '1090',
+  prefetch: false,
 };
