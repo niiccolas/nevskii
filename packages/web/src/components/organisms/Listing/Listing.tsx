@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { Card } from '@Molecules';
 
 import './Listing.scss';
@@ -32,9 +33,14 @@ export interface ListingProps {
     items: ProductsItem[];
   };
   header: string;
+  prefetch: boolean;
 }
 
-export const Listing: React.FC<ListingProps> = ({ products, header }) => {
+export const Listing: React.FC<ListingProps> = ({
+  products,
+  header,
+  prefetch,
+}) => {
   const { items } = products;
 
   return (
@@ -42,15 +48,28 @@ export const Listing: React.FC<ListingProps> = ({ products, header }) => {
       <h3 className="Listing__header">{header}</h3>
       <div className="Listing__items">
         {items &&
-          items.map(({ title, mediaType, price, imageUrl, idProduct }) => (
-            <Card
-              key={idProduct}
-              title={title}
-              mediaType={mediaType.name}
-              price={price}
-              src={imageUrl}
-            />
-          ))}
+          items.map(
+            ({
+              title,
+              mediaType,
+              price,
+              imageUrl,
+              idProduct,
+              productionYear,
+            }) => (
+              <Card
+                key={idProduct}
+                linkUrl={idProduct}
+                title={title}
+                subtitle={productionYear.toString()}
+                mediaType={mediaType.name}
+                price={price}
+                src={imageUrl}
+                button={true}
+                prefetch={prefetch}
+              />
+            ),
+          )}
       </div>
     </section>
   );
