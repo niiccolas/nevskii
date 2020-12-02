@@ -85,6 +85,7 @@ NoImages.args = {
     },
   ],
   stacked: true,
+  desaturate: true,
 };
 
 export const NoTooltip = Template.bind({});

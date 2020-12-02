@@ -23,7 +23,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    router.push('?title=' + searchQuery);
+    router.push('/?title=' + searchQuery);
   };
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>) =>

@@ -81,6 +81,7 @@ export const Avatar: React.FC<AvatarProps> = ({
           'Avatar',
           `Avatar--${size}`,
           link && 'Avatar--linked',
+          desaturate && 'Avatar--grayscale',
           className,
         ].join(' ')}
         style={{
@@ -91,7 +92,6 @@ export const Avatar: React.FC<AvatarProps> = ({
                 backgroundPosition: 'center',
               }
             : { backgroundColor }),
-          ...(desaturate && { filter: 'saturate(0)' }),
         }}
       >
         {customTooltip && (

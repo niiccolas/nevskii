@@ -2,7 +2,7 @@ import React from 'react';
 import { NextPage } from 'next';
 
 import { Button } from '@Atoms';
-import { BadgeList } from '@Molecules';
+import { BadgeList, AvatarList } from '@Molecules';
 import { formatPrice, formatValuesList } from '@utils';
 
 import './Product.scss';
@@ -35,7 +35,7 @@ export interface Product {
   subcategories: string;
   genres: string;
   subtitles: string;
-  collection?: string;
+  collections?: string;
   trailer?: string;
   actorsAvatar?: { src: string; name: string }[];
 }
@@ -72,12 +72,11 @@ export const Product: NextPage<ProductProps> = ({
     category,
     formatTv,
     formatFilm,
-    actors,
     audioTracks,
     subcategories,
     genres,
     subtitles,
-    collection,
+    collections,
     trailer,
     actorsAvatar,
   } = product;
@@ -89,10 +88,12 @@ export const Product: NextPage<ProductProps> = ({
       </div>
       <div>
         <header>
-          <h2 className="Product__title">{title}</h2>
-          <h3 className="Product__author">
-            {formatValuesList(authors)},{' ' + productionYear}
-          </h3>
+          {title && <h2 className="Product__title">{title}</h2>}
+          {authors && (
+            <h3 className="Product__author">
+              {`${formatValuesList(authors)} (${productionYear})`}
+            </h3>
+          )}
 
           <BadgeList
             badges={[
@@ -150,42 +151,20 @@ export const Product: NextPage<ProductProps> = ({
                 {formatValuesList(countries)}
               </p>
             )}
-            {collection && (
+            {collections && (
               <p>
                 <span className="Product__details--bold">Collection:</span>{' '}
-                {collection}
+                {collections}
               </p>
             )}
-            {actorsAvatar && actorsAvatar.length > 0 && (
-              <>
-                <p>
-                  <span className="Product__details--bold">Acteurs:</span>{' '}
-                  {formatValuesList(actors)}
-                </p>
-                <div className="avatars">
-                  {actorsAvatar.map(
-                    ({ src, name }) =>
-                      src && (
-                        <img
-                          className="Product__actorAvatar"
-                          key={name}
-                          src={`https://image.tmdb.org/t/p/w200/${src}`}
-                          alt={name}
-                        />
-                      ),
-                  )}
-                </div>
-              </>
-            )}
-            <div className="Product__CTA">
-              <Button
-                primary
-                label={'Ajouter au panier'}
-                type="button"
-                className="Product__CTA--wide"
-              />
-            </div>
           </section>
+          <AvatarList avatars={actorsAvatar} />
+          <Button
+            primary
+            label={'Ajouter au panier'}
+            type="button"
+            className="Product__CTA--wide"
+          />
         </header>
 
         {synopsis && (

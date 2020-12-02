@@ -20,9 +20,17 @@ export const formatValuesList = (list: string, separator = ', '): string =>
     .join(separator);
 
 /**
- * Generate uppercase initials for a given name
+ * Generate uppercase initials for a given name.
+ * Preproces input thru String.normalize() to avoid accented characters
  *
  * @param name
  */
 export const formatInitials = (name: string): string =>
-  (name.match(/\b\w/g) || []).map(letter => letter.toUpperCase()).join('');
+  (
+    name
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .match(/\b\w/g) || []
+  )
+    .map(letter => letter.toUpperCase())
+    .join('');

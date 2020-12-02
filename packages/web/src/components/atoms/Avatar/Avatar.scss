@@ -26,6 +26,10 @@
       cursor: pointer;
     }
   }
+
+  &--grayscale {
+    filter: saturate(0);
+  }
 }
 
 .Avatar__image {

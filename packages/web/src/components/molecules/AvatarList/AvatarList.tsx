@@ -30,6 +30,10 @@ export type AvatarListProps = {
    * Display tooltip on hover
    */
   customTooltip?: boolean;
+  /**
+   * How large should the Avatars be?
+   */
+  size?: 'small' | 'medium' | 'large';
 };
 
 export const AvatarList: React.FC<AvatarListProps> = ({
@@ -38,6 +42,7 @@ export const AvatarList: React.FC<AvatarListProps> = ({
   desaturate,
   style,
   customTooltip,
+  size,
 }) =>
   !avatars || avatars.length === 0 ? null : (
     <ul
@@ -57,6 +62,8 @@ export const AvatarList: React.FC<AvatarListProps> = ({
             imageUrl={avatar.src}
             desaturate={desaturate}
             customTooltip={customTooltip}
+            key={avatar.name}
+            size={size}
           />
         </li>
       ))}
