@@ -57,6 +57,7 @@ export const getProducts = async (
     const [products, count] = await query.getManyAndCount();
     return res.json({
       page: Number(pageQuery) || DEFAULT_PAGE,
+      pagesTotal: Math.ceil(count / (takeItems || DEFAULT_ITEMS_PER_PAGE)),
       itemsPerPage: takeItems || DEFAULT_ITEMS_PER_PAGE,
       itemsTotal: count,
       items: products,

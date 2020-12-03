@@ -1,0 +1,51 @@
+@import "@styles/utils.scss";
+
+.ReactPaginate {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  width: fit-content;
+  padding: 0;
+  list-style: none;
+  outline: none;
+  user-select: none;
+
+  &__previous,
+  &__next {
+    background-color: _color(neutral, dark);
+  }
+
+  &__nextLink,
+  &__prevLink {
+    display: flex;
+    padding: 0 1ch;
+
+    &:hover {
+      background: _color(neutral);
+      cursor: pointer;
+    }
+  }
+}
+
+.ReactPaginate__link {
+  display: flex;
+  align-items: center;
+  padding: 0 1ch;
+  cursor: pointer;
+  user-select: none;
+
+  &:hover {
+    // background: _color(neutral);
+    text-decoration: underline;
+  }
+
+  &--active {
+    background: _color(primary);
+    pointer-events: none;
+  }
+
+  &--disabled {
+    opacity: 0.2;
+    pointer-events: none;
+  }
+}
