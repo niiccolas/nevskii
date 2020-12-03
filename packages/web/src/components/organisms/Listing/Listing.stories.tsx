@@ -17,6 +17,7 @@ Default.args = {
   products: {
     page: 23,
     itemsPerPage: 10,
+    pagesTotal: 40,
     itemsTotal: 400,
     items: [
       {

@@ -10,17 +10,22 @@ import { Layout } from '../components/templates/Layout/Layout';
 interface Props {
   products: {
     page: number;
+    pagesTotal: number;
     itemsPerPage: number;
     itemsTotal: number;
     items: ProductsItem[];
   };
 }
 
-export const getServerSideProps: GetServerSideProps<Props> = async context => {
-  let adress: string = NEVSKII_API + 'products/';
-  if (context.query.title) adress += `?title=${context.query.title}`;
-
-  const res = await fetch(adress);
+export const getServerSideProps: GetServerSideProps<Props> = async ({
+  query,
+}) => {
+  const apiCall =
+    `${NEVSKII_API}/products?` +
+    Object.entries(query)
+      .map(([param, value]) => param + '=' + value)
+      .join('&');
+  const res = await fetch(apiCall);
   const products = (await res.json()) || {};
 
   return {
@@ -52,16 +57,14 @@ export const Home: NextPage<Props> = ({ products }): JSX.Element => (
       />
       <link rel="manifest" href="/site.webmanifest" />
     </Head>
-    <main>
-      <Hero
-        videoSrc="iamcuba.mp4"
-        poster="https://upload.epagine.fr/3327/promo/3327_11035_20-10-31-09-46-35.jpg"
-        headerLabel="“Soy Cuba”"
-        ctaLabel="SEE MORE"
-        subtitleLabel="Reissue Blu-Ray 4K"
-      />
-      <Listing header="Movies" products={products} prefetch />
-    </main>
+    <Hero
+      videoSrc="iamcuba.mp4"
+      poster="https://upload.epagine.fr/3327/promo/3327_11035_20-10-31-09-46-35.jpg"
+      headerLabel="“Soy Cuba”"
+      ctaLabel="SEE MORE"
+      subtitleLabel="Reissue Blu-Ray 4K"
+    />
+    <Listing header="Movies" products={products} prefetch={true} />
   </Layout>
 );
 

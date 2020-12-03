@@ -53,6 +53,7 @@ export const Card: React.FC<CardProps> = ({
                 label: mediaType.toUpperCase(),
                 capsule: true,
                 ...(mediaType.includes('ray') && { backgroundColor: 'blue' }),
+                size: 'small',
               },
               {
                 label: formatPrice(price),
