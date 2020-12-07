@@ -1,11 +1,13 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
+import { withNextRouter } from 'storybook-addon-next-router';
 
 import { Listing, ListingProps } from './Listing';
 
 export default {
   title: 'Organisms/Listing',
   component: Listing,
+  decorators: [withNextRouter],
 } as Meta;
 
 const Template: Story<ListingProps> = args => <Listing {...args} />;
