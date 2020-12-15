@@ -1,16 +1,15 @@
-import { CartItem } from './types';
+import { CartItem, CartState } from '../types';
 
-export const addItemToCart = (
-  { items }: { items: CartItem[] },
-  itemToAdd: CartItem,
-) => {
+export const addItemToCart = (state: CartState, itemToAdd: CartItem) => {
+  const { items } = state;
+
   const existingCartItem = items.find(
-    item => item.id === itemToAdd.id && item.name === itemToAdd.name,
+    item => item.ean === itemToAdd.ean && item.name === itemToAdd.name,
   );
 
   if (existingCartItem) {
     return items.map((item: CartItem) =>
-      item.id === itemToAdd.id && item.name === itemToAdd.name
+      item.ean === itemToAdd.ean && item.name === itemToAdd.name
         ? {
             ...item,
             quantity: item.quantity + 1,
@@ -27,7 +26,7 @@ export const incrementItem = (
   itemIncrement: CartItem,
 ) =>
   items.map((item: CartItem) =>
-    item.id === itemIncrement.id && item.name === itemIncrement.name
+    item.ean === itemIncrement.ean
       ? {
           ...item,
           quantity: item.quantity + 1,
@@ -40,7 +39,7 @@ export const decrementItem = (
   itemIncrement: CartItem,
 ) =>
   items.map((item: CartItem) =>
-    item.id === itemIncrement.id && item.name === itemIncrement.name
+    item.ean === itemIncrement.ean
       ? {
           ...item,
           quantity: item.quantity - 1,
@@ -51,4 +50,12 @@ export const decrementItem = (
 export const removeItem = (
   { items }: { items: CartItem[] },
   itemToRemove: CartItem,
-) => items.filter((item: CartItem) => item.name !== itemToRemove.name);
+) => items.filter((item: CartItem) => item.ean !== itemToRemove.ean);
+
+/**
+ * Total number of items in cart
+ */
+export const totalItemsCount = (items: CartItem[]) =>
+  items.reduce((prev, curr) => {
+    return prev + curr.quantity;
+  }, 0);

@@ -5,9 +5,3 @@ export enum CartActionTypes {
   INCREMENT_ITEM = 'INCREMENT_ITEM',
   DECREMENT_ITEM = 'DECREMENT_ITEM',
 }
-
-export type CartItem = {
-  name: string;
-  quantity: number;
-  id: number;
-};

@@ -8,26 +8,37 @@ import {
   removeItem,
 } from './utils';
 
+type CartItem = {
+  name: string;
+  quantity: number;
+  ean: string;
+};
+
+type CartState = {
+  isVisible: boolean;
+  items: CartItem[];
+};
+
 const INITIAL_STATE = {
-  hidden: true,
+  isVisible: false,
   items: [],
 };
 
-const cartReducer = (state = INITIAL_STATE, action: AnyAction) => {
+const cart = (state: CartState = INITIAL_STATE, action: AnyAction) => {
   switch (action.type) {
     case CartActionTypes.TOGGLE_CART:
-      return { ...state, hidden: !state.hidden };
+      return { ...state, isVisible: !state.isVisible };
     case CartActionTypes.ADD_ITEM:
-      return { ...state, cartItems: addItemToCart(state, payload) };
+      return { ...state, items: addItemToCart(state, action.payload) };
     case CartActionTypes.INCREMENT_ITEM:
-      return { ...state, cartItems: incrementItem(state, payload) };
+      return { ...state, items: incrementItem(state, action.payload) };
     case CartActionTypes.DECREMENT_ITEM:
-      return { ...state, cartItems: decrementItem(state, payload) };
+      return { ...state, items: decrementItem(state, action.payload) };
     case CartActionTypes.REMOVE_ITEM:
-      return { ...state, cartItems: removeItem(state, payload) };
+      return { ...state, items: removeItem(state, action.payload) };
     default:
       return state;
   }
 };
 
-export default cartReducer;
+export default cart;

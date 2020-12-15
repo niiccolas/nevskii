@@ -1,54 +1,26 @@
 import { useMemo } from 'react';
-import { createStore, applyMiddleware, AnyAction } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-type State = {
-  lastUpdate: number;
-  count: number;
-  light: boolean;
-};
+import rootReducer from './reducer';
+import { State } from './types';
 
 let store: any;
 
-const initialState = {
-  lastUpdate: 0,
-  light: false,
-  count: 0,
+export const INITIAL_STATE = {
+  cart: {
+    isVisible: false,
+    items: [],
+  },
 };
 
-const reducer = (state: State = initialState, action: AnyAction) => {
-  switch (action.type) {
-    case 'TICK':
-      return {
-        ...state,
-        lastUpdate: action.lastUpdate,
-        light: !!action.light,
-      };
-    case 'INCREMENT':
-      return {
-        ...state,
-        count: state.count + 1,
-      };
-    case 'DECREMENT':
-      return {
-        ...state,
-        count: state.count - 1,
-      };
-    case 'RESET':
-      return {
-        ...state,
-        count: initialState.count,
-      };
-    default:
-      return state;
-  }
-};
-
-const initStore = (preloadedState: State = initialState) => {
+const initStore = (preloadedState: State = INITIAL_STATE) => {
   return createStore(
-    reducer,
+    rootReducer,
     preloadedState,
-    composeWithDevTools(applyMiddleware()),
+    composeWithDevTools({
+      trace: true,
+    })(applyMiddleware()),
   );
 };
 
@@ -74,7 +46,7 @@ export const initializeStore = (preloadedState?: State) => {
   return _store;
 };
 
-export const useStore = (initialState: State) => {
-  const store = useMemo(() => initializeStore(initialState), [initialState]);
+export const useStore = (INITIAL_STATE: State) => {
+  const store = useMemo(() => initializeStore(INITIAL_STATE), [INITIAL_STATE]);
   return store;
 };
