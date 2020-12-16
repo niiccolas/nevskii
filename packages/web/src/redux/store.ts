@@ -1,6 +1,8 @@
 import { useMemo } from 'react';
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
 import rootReducer from './reducer';
 import { State } from './types';
@@ -14,9 +16,17 @@ export const INITIAL_STATE = {
   },
 };
 
+const persistConfig = {
+  key: 'primary',
+  storage,
+  whitelist: ['cart'],
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
 const initStore = (preloadedState: State = INITIAL_STATE) => {
   return createStore(
-    rootReducer,
+    persistedReducer,
     preloadedState,
     composeWithDevTools({
       trace: true,

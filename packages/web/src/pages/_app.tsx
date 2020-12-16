@@ -1,13 +1,22 @@
-import App from 'next/app';
-import { Header } from '@Organisms';
+import { AppProps } from 'next/app';
+import { Provider } from 'react-redux';
+import { useStore } from '../redux/store';
+import { persistStore } from 'redux-persist';
+import { PersistGate } from 'redux-persist/integration/react';
+
 import '../styles/global.scss';
 
-export default App;
+export default function App({ Component, pageProps }: AppProps) {
+  const store = useStore(pageProps.initialReduxState);
+  const persistor = persistStore(store, {}, function () {
+    persistor.persist();
+  });
 
-<Header
-  logo="nevskii"
-  logoMobile="K"
-  onCreateAccount={() => null}
-  onLogin={() => null}
-  onLogout={() => null}
-/>;
+  return (
+    <Provider store={store}>
+      <PersistGate loading={<div>Loading</div>} persistor={persistor}>
+        <Component {...pageProps} />
+      </PersistGate>
+    </Provider>
+  );
+}
