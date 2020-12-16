@@ -2,10 +2,15 @@
  * Format price values coming from database and appends currency
  *
  * @param price - price in cents and typed as a string
- * @param currency - default to EUROS
+ * @param quantity
+ * @param currency
  */
-export const formatPrice = (price: string, currency: '€' = '€'): string =>
-  (parseInt(price, 10) / 100).toFixed(2) + '\u00a0' + currency;
+export const formatPrice = (
+  price: string,
+  quantity = 1,
+  currency: '€' = '€',
+): string =>
+  ((parseInt(price, 10) / 100) * quantity).toFixed(2) + '\u00a0' + currency;
 
 /**
  * Format comma-separated values from database

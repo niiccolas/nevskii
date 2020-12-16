@@ -39,7 +39,7 @@ export const decrementItem = (
   itemIncrement: CartItem,
 ) =>
   items.map((item: CartItem) =>
-    item.ean === itemIncrement.ean
+    item.ean === itemIncrement.ean && item.quantity > 1
       ? {
           ...item,
           quantity: item.quantity - 1,
@@ -58,4 +58,12 @@ export const removeItem = (
 export const totalItemsCount = (items: CartItem[]) =>
   items.reduce((prev, curr) => {
     return prev + curr.quantity;
+  }, 0);
+
+/**
+ * Grand total price of items
+ */
+export const grandTotal = (items: CartItem[]) =>
+  items.reduce((prev, { price, quantity }) => {
+    return price ? prev + parseInt(price, 10) * quantity : prev;
   }, 0);

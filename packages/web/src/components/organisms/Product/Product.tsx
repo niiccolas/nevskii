@@ -1,9 +1,11 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { NextPage } from 'next';
 
 import { Button } from '@Atoms';
 import { BadgeList, AvatarList } from '@Molecules';
 import { formatPrice, formatValuesList } from '@utils';
+import { addItem } from '../../../redux/cart/actions';
 
 import './Product.scss';
 
@@ -80,6 +82,8 @@ export const Product: NextPage<ProductProps> = ({
     trailer,
     actorsAvatar,
   } = product;
+
+  const dispatch = useDispatch();
 
   return (
     <article className="Product">
@@ -161,9 +165,19 @@ export const Product: NextPage<ProductProps> = ({
           <AvatarList avatars={actorsAvatar} />
           <Button
             primary
-            label={'Ajouter au panier'}
+            label={'Add to cart'}
             type="button"
             className="Product__CTA--wide"
+            onClick={() =>
+              dispatch(
+                addItem({
+                  ean: ean,
+                  name: title,
+                  quantity: 1,
+                  src: imageUrl,
+                }),
+              )
+            }
           />
         </header>
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import Link from 'next/link';
 import {
   FaSearch,
@@ -11,6 +12,8 @@ import {
 import CSS from 'csstype';
 
 import { SearchBar } from '@Molecules';
+import { totalItemsCount } from '../../../redux/cart/utils';
+import { State } from '../../../redux/types';
 
 import './Navbar.scss';
 
@@ -26,11 +29,11 @@ export interface NavLink {
   label?: string;
   href?: string;
   icon?: 'user' | 'search' | 'cart' | 'signIn' | 'signUp';
+  onClick: Function;
 }
 
 export interface NavbarProps {
   children?: any;
-  onClick?: () => void;
   navLinks: NavLink[];
   style?: CSS.Properties;
   withSearch: boolean;
@@ -46,14 +49,25 @@ export const Navbar: React.FC<NavbarProps> = ({
   withSearch = false,
   searchBtnLabel = 'Search',
 }) => {
+  const {
+    cart: { items },
+  } = useSelector((state: State) => state);
+  const cartItemsCount = totalItemsCount(items);
+
   return (
     <nav className="Navbar" style={style}>
       <SearchBar active={withSearch} searchBtnLabel={searchBtnLabel} />
-      {navLinks.map(({ href = '#', label, icon }, idx) => (
+      {navLinks.map(({ href = '#', label, icon, onClick }, idx) => (
         <Link href={href} prefetch={false} key={idx}>
-          <div className="Navbar__link">
+          <div className="Navbar__link" onClick={() => onClick()}>
             {icon && React.createElement(NAV_ICONS[icon])}
-            {label}
+            <span
+              className={
+                icon === 'cart' && cartItemsCount > 0 ? 'Navbar__cart' : ''
+              }
+            >
+              {label}
+            </span>
           </div>
         </Link>
       ))}

@@ -15,9 +15,11 @@ Text.args = {
   navLinks: [
     {
       label: 'Profil',
+      onClick: () => null,
     },
     {
       label: 'Panier',
+      onClick: () => null,
     },
   ],
 };
@@ -27,9 +29,11 @@ Icons.args = {
   navLinks: [
     {
       icon: 'user',
+      onClick: () => null,
     },
     {
       icon: 'cart',
+      onClick: () => null,
     },
   ],
 };
@@ -39,14 +43,17 @@ TextAndIcons.args = {
   navLinks: [
     {
       label: 'Bestsellers',
+      onClick: () => null,
     },
     {
       label: 'Profile',
       icon: 'user',
+      onClick: () => null,
     },
     {
       label: 'Cart',
       icon: 'cart',
+      onClick: () => null,
     },
   ],
 };
@@ -57,14 +64,17 @@ WithSearchBar.args = {
   navLinks: [
     {
       label: 'Bestsellers',
+      onClick: () => null,
     },
     {
       label: 'Profile',
       icon: 'user',
+      onClick: () => null,
     },
     {
       label: 'Cart',
       icon: 'cart',
+      onClick: () => null,
     },
   ],
 };

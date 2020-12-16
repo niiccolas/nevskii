@@ -1,10 +1,12 @@
 import React from 'react';
 import Link from 'next/link';
+import { useDispatch } from 'react-redux';
 import { formatPrice } from '@utils';
 import CSS from 'csstype';
 
 import { Button } from '@Atoms';
 import { BadgeList } from '@Molecules';
+import { addItem } from '../../../redux/cart/actions';
 
 import './Card.scss';
 
@@ -19,67 +21,81 @@ type CardProps = {
   button?: boolean;
   linkUrl?: number;
   buttonType?: 'button' | 'submit';
-  prefetch: boolean;
+  ean: string;
 };
 
 export const Card: React.FC<CardProps> = ({
   title,
   subtitle,
   src,
-  linkUrl = '#',
+  linkUrl,
   alt,
   mediaType,
   price,
   style,
   button,
   buttonType = 'button',
-  prefetch = true,
+  ean,
 }) => {
-  return (
-    <Link href={linkUrl ? `products/${linkUrl}` : '#'} prefetch={prefetch}>
-      <article
-        className="Card"
-        itemScope
-        itemType="http://schema.org/Product"
-        style={style}
-      >
-        <div className="Card__header">
-          <h2 itemProp="Card__title">{title}</h2>
+  const dispatch = useDispatch();
 
-          <h3 itemProp="Card__subtitle">{subtitle}</h3>
-          <BadgeList
-            badges={[
-              {
-                label: mediaType.toUpperCase(),
-                capsule: true,
-                ...(mediaType.includes('ray') && { backgroundColor: 'blue' }),
-                size: 'small',
-              },
-              {
-                label: formatPrice(price),
-                primary: false,
-                backgroundColor: 'white',
-              },
-            ]}
-            className="Card__header--push-to-bottom"
-          />
-          {button && (
-            <Button
-              label="Add to cart"
-              type={buttonType}
-              size="small"
-              primary={true}
-              onClick={() => alert('added to cart')}
-            />
-          )}
-        </div>
-        <img
-          className="Card__image"
-          src={src}
-          alt={alt || title}
-          draggable={false}
+  return (
+    <article
+      className="Card"
+      itemScope
+      itemType="http://schema.org/Product"
+      style={style}
+    >
+      <div className="Card__header">
+        <Link href={linkUrl ? `products/${linkUrl}` : '#'}>
+          <a href={linkUrl ? `products/${linkUrl}` : '#'}>
+            <h2 className="Card__title">{title}</h2>
+          </a>
+        </Link>
+        <h3 className="Card__subtitle">{subtitle}</h3>
+        <BadgeList
+          badges={[
+            {
+              label: mediaType.toUpperCase(),
+              capsule: true,
+              ...(mediaType.includes('ray') && { backgroundColor: 'blue' }),
+              size: 'small',
+            },
+            {
+              label: formatPrice(price),
+              primary: false,
+              backgroundColor: 'white',
+            },
+          ]}
+          className="Card__header--push-to-bottom"
         />
-      </article>
-    </Link>
+        {button && (
+          <Button
+            label="Add to cart"
+            type={buttonType}
+            size="small"
+            primary={true}
+            onClick={() =>
+              dispatch(
+                addItem({
+                  ean: ean,
+                  name: title,
+                  quantity: 1,
+                  src,
+                  price,
+                  linkUrl,
+                }),
+              )
+            }
+          />
+        )}
+      </div>
+      <img
+        className="Card__image"
+        src={src}
+        alt={alt || title}
+        draggable={false}
+      />
+    </article>
   );
 };

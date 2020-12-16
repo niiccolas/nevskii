@@ -24,7 +24,7 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-const initStore = (preloadedState: State = INITIAL_STATE) => {
+const initStore = (preloadedState: any = INITIAL_STATE) => {
   return createStore(
     persistedReducer,
     preloadedState,

@@ -28,6 +28,8 @@ const cart = (state: CartState = INITIAL_STATE, action: AnyAction) => {
   switch (action.type) {
     case CartActionTypes.TOGGLE_CART:
       return { ...state, isVisible: !state.isVisible };
+    case CartActionTypes.EMPTY_CART:
+      return INITIAL_STATE;
     case CartActionTypes.ADD_ITEM:
       return { ...state, items: addItemToCart(state, action.payload) };
     case CartActionTypes.INCREMENT_ITEM:

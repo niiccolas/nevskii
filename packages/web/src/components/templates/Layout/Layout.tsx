@@ -4,7 +4,7 @@ import { Header } from '@Organisms';
 import './Layout.scss';
 import { Router } from 'next/router';
 
-export const Layout: NextPage<any> = ({ children, className }): JSX.Element => {
+const Layout: NextPage<any> = ({ children, className }): JSX.Element => {
   Router.events.on('routeChangeComplete', () => {
     window.scrollTo(0, 0);
   });
@@ -23,3 +23,5 @@ export const Layout: NextPage<any> = ({ children, className }): JSX.Element => {
     </div>
   );
 };
+
+export default Layout;

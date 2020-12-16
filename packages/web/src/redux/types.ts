@@ -1,14 +1,6 @@
-export type CartItem = {
-  name: string;
-  quantity: number;
-  ean: string;
-  src?: string;
-};
+export * from './cart/types';
 
-export type CartState = {
-  isVisible: boolean;
-  items: CartItem[];
-};
+import { CartState } from './cart/types';
 
 export type State = {
   cart: CartState;

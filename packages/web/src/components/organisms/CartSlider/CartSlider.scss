@@ -1,0 +1,79 @@
+@import "@styles/utils.scss";
+
+.CartSlider {
+  position: absolute;
+  top: 90px;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  min-height: 340px;
+  padding: 20px;
+  overflow: auto;
+  background-color: gray;
+  border: 1px solid black;
+
+  @media screen and (min-width: 600px) {
+    right: 2rem;
+    left: revert;
+    width: 70%;
+    box-shadow: 0 11px 21px 0 rgba(0, 0, 0, 0.22);
+  }
+}
+
+.CartSlider__items {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.CartSlider__itemsList {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.CartSlider__itemQuantity {
+  display: inline-block;
+  min-width: 2ch;
+  text-align: right;
+}
+
+.CartSlider__button {
+  display: block;
+  width: 100%;
+  min-height: 50px;
+  margin-top: auto;
+  margin-right: 0;
+}
+
+.CartSlider--empty {
+  margin: 50px auto;
+  font-size: 2rem;
+  text-decoration-line: underline;
+}
+
+.CartSlider__item {
+  display: flex;
+  width: 100%;
+  margin-bottom: 0.8rem;
+  font-size: 1.2rem;
+
+  img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+  }
+}
+
+.CartSlider__itemDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 70%;
+  padding: 0 20px;
+}
+
+.CartSliderItem__itemLabel {
+  font-weight: 600;
+}

@@ -1,6 +1,12 @@
 import React from 'react';
+import { useRouter } from 'next/router';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { State } from '../../../redux/types';
 import { Navbar, NavLink } from '@Molecules';
 import { Logo } from '@Atoms';
+import { CartSlider } from '@Organisms';
+import { totalItemsCount } from '../../../redux/cart/utils';
 
 import './Header.scss';
 
@@ -20,9 +26,30 @@ export const Header: React.FC<HeaderProps> = ({
   logoMobile,
   className = '',
 }) => {
+  const router = useRouter();
+  const {
+    cart: { items, isVisible },
+  } = useSelector((state: State) => state);
+  const dispatch = useDispatch();
+  const total = totalItemsCount(items);
+
   const userNavLinks: NavLink[] = user
-    ? [{ icon: 'user', href: '/profile' }]
-    : [{ icon: 'signIn' }, { icon: 'signUp' }];
+    ? [{ icon: 'user', href: '/profile', onClick: () => alert('profile') }]
+    : [
+        { icon: 'signIn', onClick: () => alert('sign in') },
+        { icon: 'signUp', onClick: () => alert('sign up') },
+      ];
+
+  const cartLink: NavLink[] =
+    router.pathname !== '/cart'
+      ? [
+          {
+            icon: 'cart',
+            ...(total && { label: `${total}` }),
+            onClick: () => dispatch({ type: 'TOGGLE_CART' }),
+          },
+        ]
+      : [];
 
   return (
     <header className={['Header', className].join(' ')}>
@@ -30,10 +57,11 @@ export const Header: React.FC<HeaderProps> = ({
         <Logo logo={logo} logoMobile={logoMobile} prefetch={false} />
       </h1>
       <Navbar
-        navLinks={[{ icon: 'cart' }, ...userNavLinks]}
+        navLinks={[...cartLink, ...userNavLinks]}
         withSearch
         searchBtnLabel="Search"
       />
+      {isVisible && <CartSlider />}
     </header>
   );
 };

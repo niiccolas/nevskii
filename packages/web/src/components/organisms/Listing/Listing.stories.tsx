@@ -14,7 +14,6 @@ const Template: Story<ListingProps> = args => <Listing {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  prefetch: false,
   header: 'Movies',
   products: {
     page: 23,
