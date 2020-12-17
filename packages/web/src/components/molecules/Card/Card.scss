@@ -45,8 +45,6 @@
 }
 
 .Card:hover {
-  cursor: pointer;
-
   .Card__image {
     opacity: 0.9;
   }
@@ -58,4 +56,13 @@
 
 .Card__header--push-to-bottom {
   flex: 1;
+}
+
+.Card__header a {
+  color: $white;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }

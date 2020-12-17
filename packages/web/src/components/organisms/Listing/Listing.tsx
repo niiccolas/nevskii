@@ -37,13 +37,11 @@ export interface ListingProps {
     items: ProductsItem[];
   };
   header: string;
-  prefetch: boolean;
 }
 
 export const Listing: React.FC<ListingProps> = ({
   products: { items, itemsTotal, itemsPerPage, page, pagesTotal },
   header,
-  prefetch,
 }) => {
   const router = useRouter();
   const handlePagination = (page: { selected: number }) => {
@@ -83,6 +81,7 @@ export const Listing: React.FC<ListingProps> = ({
               imageUrl,
               idProduct,
               productionYear,
+              ean,
             }) => (
               <Card
                 key={idProduct}
@@ -92,7 +91,7 @@ export const Listing: React.FC<ListingProps> = ({
                 mediaType={mediaType.name}
                 price={price}
                 src={imageUrl}
-                prefetch={prefetch}
+                ean={ean}
                 button
               />
             ),
