@@ -1,5 +1,6 @@
 import { ConnectionOptions } from 'typeorm';
 import path from 'path';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 require('dotenv').config();
 
 const isCompiled = path.extname(__filename).includes('js');

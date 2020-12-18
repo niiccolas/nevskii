@@ -53,9 +53,9 @@ Example command: `yarn seed --items 50 --orders 500 --mint --deploy`
 
 For deployment to Heroku's [PostgreSQL free tier](https://elements.heroku.com/addons/heroku-postgresql), take into account the 10,000 total SQL rows limit (as of Oct. 2020). **Processing all items from CSV source files will exceed that limit!** Use the table below for reference and set [source file](https://github.com/niiccolas/nevskii-db/blob/b17d3dac9f8e8c2cd05934516766a0428953b4b3/src/index.js#L44) and [items range](https://github.com/niiccolas/nevskii-db/blob/b17d3dac9f8e8c2cd05934516766a0428953b4b3/src/index.js#L43) to limit row count accordingly.
 
-| source file                                    | items range (first-last)            | total SQL rows |
-| ---------------------------------------------- | ---------------- | -------------- |
-| `dvd_8182.csv`                                 | 0-8182           | 164477         |
-|                                                | **0-200**        | **5486 ✅**    |
-| `dvd_8182_mint.csv` (default, no missing data) | 0-4412 (default) | 100785         |
-|                                                | **0-400**        | **8860 ✅**    |
+| source file                                    | items range (first-last) | total SQL rows |
+| ---------------------------------------------- | ------------------------ | -------------- |
+| `dvd_8182.csv`                                 | 0-8182                   | 164477         |
+|                                                | **0-200**                | **5486 ✅**    |
+| `dvd_8182_mint.csv` (default, no missing data) | 0-4412 (default)         | 100785         |
+|                                                | **0-400**                | **8860 ✅**    |

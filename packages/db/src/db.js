@@ -119,8 +119,8 @@ const seedMainTables = async data => {
           getIdIndex(video_categories, csv_category),
           getIdIndex(tv_formats, csv_format_tv),
           getIdIndex(film_formats, csv_format_film),
-          !!csv_bonus_content ? csv_bonus_content : null,
-          !!csv_duration ? parseInt(csv_duration) : null,
+          csv_bonus_content ? csv_bonus_content : null,
+          csv_duration ? parseInt(csv_duration) : null,
         ],
       );
 
@@ -188,7 +188,7 @@ const seedMainTables = async data => {
         }
       });
 
-      if (!!csv_subcategory) {
+      if (csv_subcategory) {
         await pool.query(
           `INSERT INTO video_subcategories(
                 id_vsc_video,
@@ -200,7 +200,7 @@ const seedMainTables = async data => {
 
       [csv_scg1, csv_scg2, csv_scg3, csv_scg4].forEach(
         async csv_subcategory_genre => {
-          if (!!csv_subcategory_genre) {
+          if (csv_subcategory_genre) {
             await pool.query(
               `INSERT INTO video_genres(
               id_vge_video,
@@ -227,7 +227,7 @@ const seedMainTables = async data => {
         }
       });
 
-      if (!!csv_collection) {
+      if (csv_collection) {
         await pool.query(
           `INSERT INTO video_collections(
             id_vco_video,
@@ -237,7 +237,7 @@ const seedMainTables = async data => {
         );
       }
 
-      if (!!csv_country) {
+      if (csv_country) {
         csv_country.split(';').forEach(async country => {
           try {
             await pool.query(
@@ -253,7 +253,7 @@ const seedMainTables = async data => {
         });
       }
 
-      if (!!csv_authors) {
+      if (csv_authors) {
         csv_authors.split(',').forEach(async author => {
           try {
             await pool.query(
@@ -407,7 +407,7 @@ const seedUsers = async users => {
           email, // UNIQUE!
           gender || '?',
           address || `${randomInt(1, 50)} avenue de Paris`,
-          birthDate || `${randomInt(1960, 2000)}-${randomInt(01, 12)}-01`,
+          birthDate || `${randomInt(1960, 2000)}-${randomInt(1, 12)}-01`,
           'now()',
           countryId || randomInt(0, 10),
           city || 'Paris',
@@ -481,7 +481,7 @@ const insertIntoTable = (tableName, set) => {
         i,
         setItem,
       ),
-      (err, _) => {
+      err => {
         if (err) throw err;
       },
     );

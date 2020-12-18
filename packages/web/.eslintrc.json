@@ -1,6 +1,11 @@
 {
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint"],
+  "settings": {
+    "react": {
+      "version": "^16.13.1"
+    }
+  },
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
