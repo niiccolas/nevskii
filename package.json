@@ -11,6 +11,23 @@
     "storybook": "yarn workspace @nevskii/web storybook",
     "api": "yarn workspace @nevskii/api start",
     "api:dev": "yarn workspace @nevskii/api dev",
-    "seed": "yarn workspace @nevskii/db seed"
+    "seed": "yarn workspace @nevskii/db seed",
+    "lint": "yarn workspaces run lint",
+    "format": "yarn workspaces run format"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*.+(js|jsx|ts|tsx|css)": [
+      "yarn lint",
+      "yarn format"
+    ]
+  },
+  "devDependencies": {
+    "husky": "^4.3.6",
+    "lint-staged": "^10.5.3"
   }
 }

@@ -1,18 +1,12 @@
 {
   "compilerOptions": {
-    "lib": [
-      "es2018",
-      "es5",
-      "dom"
-    ],
+    "lib": ["es2018", "es5", "dom"],
     "baseUrl": ".",
     "paths": {
-      "@/types/*" : ["src/types/*"],
-      "*" : ["src/types/*"]
+      "@/types/*": ["src/types/*"],
+      "*": ["src/types/*"]
     },
-    "typeRoots": [
-      "./src/types"
-    ],
+    "typeRoots": ["./src/types"],
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "target": "es5",
@@ -26,10 +20,6 @@
     "declaration": true,
     "sourceMap": true
   },
-  "exclude": [
-    "node_modules", "dist"
-  ],
-  "include": [
-    "src/**/*.ts"
-  ]
+  "exclude": ["node_modules", "dist"],
+  "include": ["src/**/*.ts"]
 }

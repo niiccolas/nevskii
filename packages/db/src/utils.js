@@ -1,7 +1,7 @@
-const path = require('path');
-const csv = require('csvtojson');
-const Spinnies = require('spinnies');
-const chalk = require('chalk');
+import { resolve } from 'path';
+import csv from 'csvtojson';
+import Spinnies from 'spinnies';
+import { bold } from 'chalk';
 
 /**
  * Return array-like position of string in Set
@@ -57,7 +57,7 @@ const generateIdName = tableName => {
  * @param {string} sourceFile
  */
 const parseCSV = async sourcefile => {
-  const csvFilepath = path.resolve(__dirname, '../assets/csv/', sourcefile);
+  const csvFilepath = resolve(__dirname, '../assets/csv/', sourcefile);
 
   return await csv({
     delimiter: ';',
@@ -94,7 +94,7 @@ const spinnies = spinner();
  * @param {string} EAN
  */
 const logExit = (error, EAN = '') => {
-  if (EAN) console.log(chalk.bold.red(`Item EAN: ${EAN}`));
+  if (EAN) console.log(bold.red(`Item EAN: ${EAN}`));
   console.log('\n', error);
   process.exit(1);
 };
@@ -107,7 +107,7 @@ const logExit = (error, EAN = '') => {
 const randomInt = (min, max) =>
   Math.floor(Math.random() * (max + 1 - min) + min);
 
-module.exports = {
+export default {
   getIdIndex,
   parseMonthFR,
   generateIdName,

@@ -4,7 +4,9 @@
   "description": "Starter PostgreSQL database for the Nevskii platform. Seed, dump, deploy!",
   "main": "src/index.js",
   "scripts": {
-    "seed": "node src/index.js"
+    "seed": "node src/index.js",
+    "lint": "eslint . --ext js",
+    "format": "prettier --write ."
   },
   "keywords": [],
   "author": "niiccolas",
@@ -12,12 +14,16 @@
   "dependencies": {
     "csvtojson": "^2.0.10",
     "dotenv": "^8.2.0",
-    "pg-format": "^1.0.4",
     "pg": "^8.3.3",
+    "pg-format": "^1.0.4",
     "pgtools": "^0.3.0",
     "spinnies": "^0.5.1"
   },
   "devDependencies": {
-    "minimist": "^1.2.5"
+    "eslint": "^7.15.0",
+    "eslint-config-prettier": "^7.0.0",
+    "eslint-plugin-prettier": "^3.3.0",
+    "minimist": "^1.2.5",
+    "prettier": "^2.2.1"
   }
 }

@@ -9,11 +9,6 @@ export const getProducts = async (
   try {
     const DEFAULT_ITEMS_PER_PAGE = 10;
     const DEFAULT_PAGE = 1;
-    enum OrderBy {
-      price = 'price',
-      title = 'title',
-      createdAt = 'createdAt',
-    }
 
     const {
       title: titleQuery,
@@ -36,13 +31,11 @@ export const getProducts = async (
           title: '%' + titleQuery + '%',
         });
 
-    if (orderQuery && orderByQuery) {
-      const order =
-        orderQuery && `${orderQuery}`.toUpperCase() == 'DESC' ? 'DESC' : 'ASC';
-      const orderBy = (<any>OrderBy)[`${req.query.orderBy}`]
-        ? orderByQuery
-        : OrderBy.createdAt;
-      query.orderBy(`p.${orderBy}`, order);
+    if (orderByQuery) {
+      // Default to ascending sort order
+      const order = `${orderQuery}`.toUpperCase() === 'DESC' ? 'DESC' : 'ASC';
+
+      query.orderBy(`p.${orderByQuery}`, order);
     }
 
     const takeItems: number = sizeQuery

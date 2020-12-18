@@ -28,8 +28,6 @@ app
   .listen(PORT, () => {
     console.log(chalk.magentaBright(`🍿 NevskiiAPI live on port ${PORT}`));
   })
-  .on('error', (err: any) => {
-    err.code === 'EADDRINUSE'
-      ? console.log(chalk.redBright(`ERROR: port ${PORT} already in use`))
-      : console.log(err);
+  .on('error', err => {
+    console.log(chalk.redBright(err));
   });
