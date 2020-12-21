@@ -1,0 +1,144 @@
+@import "@styles/utils.scss";
+
+.Menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+.Menu .toggler {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+  z-index: 2;
+}
+.Menu .Menu__hamburger {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 60px;
+  width: 60px;
+  background: transparent;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+/* Hamburger line */
+.Menu .Menu__hamburger > div {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #fafafa;
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.4s;
+}
+
+/* Hamburger top & bottom line */
+.Menu .Menu__hamburger > div:before,
+.Menu .Menu__hamburger > div:after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 0;
+  background: inherit;
+  height: 2px;
+  width: 100%;
+  z-index: 1;
+}
+.Menu .Menu__hamburger > div:after {
+  top: -10px;
+}
+
+/* Toggler Animation */
+.Menu .toggler:checked + .Menu__hamburger > div {
+  transform: rotate(135deg);
+}
+.Menu .toggler:checked + .Menu__hamburger > div:before,
+.Menu .toggler:checked + .Menu__hamburger > div:after {
+  top: 0;
+  transform: rotate(90deg);
+}
+
+/* Rotate on hover when checked */
+.Menu .toggler:checked:hover + .Menu__hamburger > div {
+  transform: rotate(225deg);
+}
+.Menu__items {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(59, 59, 59, 0.9);
+  height: 100vh;
+  width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  opacity: 0;
+  transition: all var(--menu-speed) ease;
+}
+.Menu__items > div {
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.4s ease-in;
+}
+.Menu__items ul {
+  list-style: none;
+}
+.Menu__items li {
+  padding: 1rem 0;
+}
+.Menu__items > div a {
+  text-decoration: none;
+  color: _color(neutral, lighter);
+  font-size: 1.5rem;
+  opacity: 0;
+  transition: opacity 1s ease-in;
+}
+.Menu__items a:hover {
+  color: _color(primary);
+  transition: color 0.3s ease-in;
+}
+
+/* Show Menu */
+.Menu .toggler:checked ~ .Menu__items {
+  opacity: 1;
+  width: 50vw;
+  transition: all var(--menu-speed) ease;
+}
+.Menu .toggler:checked ~ .Menu__items > div {
+  opacity: 1;
+  transition: opacity 0.4s ease-in;
+}
+.Menu .toggler:checked ~ .Menu__items > div a {
+  opacity: 1;
+  transition: opacity 1s ease-in;
+}
+
+@media (max-width: 500px) {
+  .Menu .toggler:checked ~ .Menu__items {
+    width: 65vw;
+  }
+}
