@@ -1,0 +1,14 @@
+{
+  "eslint.alwaysShowStatus": true,
+  "eslint.format.enable": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "stylelint.vscode-stylelint",
+    "editor.suggest.insertMode": "replace",
+    "gitlens.codeLens.scopes": ["document"]
+  }
+}
