@@ -4,6 +4,7 @@ $youtube: #d16e8d;
 $articles: #ffac83;
 $community: #3f78c9;
 $card: #5b49c4;
+$text: #2a2a2a;
 $white: #ffffff;
 $black: #444a51;
 
@@ -43,7 +44,8 @@ $colors: (
     dark: $black,
   ),
   text: (
-    base: #2a2a2a
+    base: $text,
+    dark: darken($text, $darken),
   ),
   background: (
     base: #2a2a2a

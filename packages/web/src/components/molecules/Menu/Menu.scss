@@ -1,144 +1,120 @@
 @import "@styles/utils.scss";
 
 .Menu {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1;
+  display: none;
+  width: 2rem;
+
+  @media screen and (max-width: 720px) {
+    display: block;
+  }
 }
-.Menu .toggler {
+
+.Menu__toggler {
   position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  height: 50px;
-  width: 50px;
+  top: 1rem;
+  right: 20px;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  width: 28px;
+  height: 28px;
+  outline: none;
   cursor: pointer;
-  z-index: 2;
+  user-select: none;
+
+  span,
+  span::before,
+  span::after {
+    position: absolute;
+    width: 28px;
+    height: 3.9px;
+    background: #fafafa;
+    border-radius: 20px;
+    transition: 500ms cubic-bezier(0.77, 0, 0.175, 1);
+    content: "";
+  }
+
+  span::before {
+    top: -8px;
+  }
+
+  span::after {
+    top: 8px;
+  }
+
+  &--active > span {
+    background: transparent;
+  }
+
+  &--active > span::before,
+  &--active > span::after {
+    top: 0;
+    background: _color(text);
+  }
+
+  &--active > span::before {
+    transform: rotate(-225deg);
+  }
+
+  &--active > span::after {
+    transform: rotate(225deg);
+  }
 }
-.Menu .Menu__hamburger {
+
+.Menu__items {
+  $menuWidth: 70vw;
+
   position: absolute;
   top: 0;
-  left: 0;
-  height: 60px;
-  width: 60px;
-  background: transparent;
-  padding: 1rem;
+  right: -($menuWidth);
+  z-index: 998;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  z-index: 1;
-}
-
-/* Hamburger line */
-.Menu .Menu__hamburger > div {
-  position: relative;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: #fafafa;
-  flex: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: 0.4s;
-}
-
-/* Hamburger top & bottom line */
-.Menu .Menu__hamburger > div:before,
-.Menu .Menu__hamburger > div:after {
-  content: "";
-  position: absolute;
-  top: 10px;
-  left: 0;
-  background: inherit;
-  height: 2px;
-  width: 100%;
-  z-index: 1;
-}
-.Menu .Menu__hamburger > div:after {
-  top: -10px;
-}
-
-/* Toggler Animation */
-.Menu .toggler:checked + .Menu__hamburger > div {
-  transform: rotate(135deg);
-}
-.Menu .toggler:checked + .Menu__hamburger > div:before,
-.Menu .toggler:checked + .Menu__hamburger > div:after {
-  top: 0;
-  transform: rotate(90deg);
-}
-
-/* Rotate on hover when checked */
-.Menu .toggler:checked:hover + .Menu__hamburger > div {
-  transform: rotate(225deg);
-}
-.Menu__items {
-  position: fixed;
-  top: 0;
-  left: 0;
-  background: rgba(59, 59, 59, 0.9);
+  width: $menuWidth;
   height: 100vh;
-  width: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  opacity: 0;
-  transition: all var(--menu-speed) ease;
+  padding: 2rem;
+  background: _color(primary);
+  transition: 250ms transform cubic-bezier(0.77, 0, 0.175, 1);
+
+  &--active {
+    transform: translateX(-($menuWidth));
+  }
+
+  p {
+    margin-bottom: 1rem;
+    padding: 0 1rem;
+    font-size: 24px;
+
+    a {
+      color: _color(text);
+      font-weight: 400;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+        text-underline-offset: 2px;
+        text-decoration-thickness: 3px;
+        text-decoration-color: _color(text);
+      }
+    }
+  }
 }
-.Menu__items > div {
-  position: relative;
+
+.Menu__overlay {
+  position: absolute;
   top: 0;
   left: 0;
-  height: 100%;
   width: 100%;
-  flex: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  opacity: 0;
-  transition: opacity 0.4s ease-in;
-}
-.Menu__items ul {
-  list-style: none;
-}
-.Menu__items li {
-  padding: 1rem 0;
-}
-.Menu__items > div a {
-  text-decoration: none;
-  color: _color(neutral, lighter);
-  font-size: 1.5rem;
-  opacity: 0;
-  transition: opacity 1s ease-in;
-}
-.Menu__items a:hover {
-  color: _color(primary);
-  transition: color 0.3s ease-in;
-}
+  height: 100vh;
+  background: black;
+  visibility: hidden;
+  opacity: 0.2;
+  transition: opacity 250ms ease, opacity 250ms ease, visibility 100ms ease;
+  user-select: none;
 
-/* Show Menu */
-.Menu .toggler:checked ~ .Menu__items {
-  opacity: 1;
-  width: 50vw;
-  transition: all var(--menu-speed) ease;
-}
-.Menu .toggler:checked ~ .Menu__items > div {
-  opacity: 1;
-  transition: opacity 0.4s ease-in;
-}
-.Menu .toggler:checked ~ .Menu__items > div a {
-  opacity: 1;
-  transition: opacity 1s ease-in;
-}
-
-@media (max-width: 500px) {
-  .Menu .toggler:checked ~ .Menu__items {
-    width: 65vw;
+  &--active {
+    visibility: visible;
+    opacity: 0.8;
   }
 }
