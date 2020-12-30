@@ -44,15 +44,18 @@ export const getProducts = async (
     const skipItems: number =
       pageQuery && Number(pageQuery) > 1
         ? (Number(pageQuery) - 1) * takeItems
-        : DEFAULT_PAGE;
+        : 0;
     query.take(takeItems).skip(skipItems);
+    const products = await query.getMany();
+    const productsCount = products.length;
 
-    const [products, count] = await query.getManyAndCount();
     return res.json({
       page: Number(pageQuery) || DEFAULT_PAGE,
-      pagesTotal: Math.ceil(count / (takeItems || DEFAULT_ITEMS_PER_PAGE)),
+      pagesTotal: Math.ceil(
+        productsCount / (takeItems || DEFAULT_ITEMS_PER_PAGE),
+      ),
       itemsPerPage: takeItems || DEFAULT_ITEMS_PER_PAGE,
-      itemsTotal: count,
+      itemsTotal: productsCount,
       items: products,
     });
   } catch (error) {
