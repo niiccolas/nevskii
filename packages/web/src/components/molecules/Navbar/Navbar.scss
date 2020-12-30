@@ -30,15 +30,6 @@
   }
 }
 
-.Navbar__hamburger {
-  display: none;
-  cursor: pointer;
-
-  @media screen and (max-width: 720px) {
-    display: block;
-  }
-}
-
 .Navbar__cart {
   width: 2ch;
   font-weight: bold;
