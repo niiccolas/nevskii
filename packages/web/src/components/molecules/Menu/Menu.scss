@@ -1,0 +1,109 @@
+@import "@styles/utils.scss";
+
+.Menu {
+  display: none;
+
+  @media screen and (max-width: 720px) {
+    display: block;
+  }
+}
+
+.Menu__toggle {
+  display: block;
+  font-size: 2rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.Menu__items {
+  $menuWidth: 70vw;
+
+  position: absolute;
+  top: 0;
+  right: -($menuWidth);
+  z-index: 998;
+  display: flex;
+  flex-direction: column;
+  width: $menuWidth;
+  height: 100vh;
+  padding: 2rem;
+  overflow-y: scroll;
+  background: _color(primary);
+  transition: 250ms transform cubic-bezier(0.77, 0, 0.175, 1);
+  user-select: none;
+
+  &--active {
+    transform: translateX(-($menuWidth));
+  }
+
+  // <Link /> elements
+  a {
+    margin-bottom: 0.5rem;
+    color: _color(text);
+    font-weight: 600;
+    font-size: 24px;
+    text-decoration: none;
+    user-select: none;
+
+    &:hover {
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      text-decoration-thickness: 3px;
+      text-decoration-color: _color(text);
+    }
+  }
+}
+
+.Menu__CTA {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+.Menu__footer {
+  margin-top: 0.5rem;
+  padding: 0;
+  color: _color(text);
+  font-weight: 400;
+  list-style: none;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  li {
+    &:last-child {
+      margin-bottom: 3rem;
+    }
+  }
+}
+
+.Menu__footerIcon {
+  padding-right: 0.7rem;
+  vertical-align: sub;
+}
+
+.Menu__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: black;
+  visibility: hidden;
+  opacity: 0.2;
+  transition: opacity 250ms ease, opacity 250ms ease, visibility 100ms ease;
+  user-select: none;
+
+  &--active {
+    visibility: visible;
+    opacity: 0.7;
+    backdrop-filter: blur(2px);
+  }
+}
+
+.Menu__freezeBody {
+  height: 100vh;
+  overflow-y: hidden;
+}

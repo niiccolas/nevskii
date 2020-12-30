@@ -5,13 +5,12 @@ import {
   FaSearch,
   FaShoppingCart,
   FaUser,
-  FaBars,
   FaSignInAlt,
   FaUserPlus,
 } from 'react-icons/fa';
 import CSS from 'csstype';
 
-import { SearchBar } from '@Molecules';
+import { SearchBar, Menu, MenuItem } from '@Molecules';
 import { totalItemsCount } from '../../../redux/cart/utils';
 import { State } from '../../../redux/types';
 
@@ -39,6 +38,34 @@ export interface NavbarProps {
   withSearch: boolean;
   searchBtnLabel: string;
 }
+
+const menuItems: MenuItem[] = [
+  {
+    href: '#',
+    label: 'Bestsellers',
+    id: 'id-01',
+  },
+  {
+    href: '#',
+    label: 'Dvd',
+    id: 'id-02',
+  },
+  {
+    href: '#',
+    label: 'Blu-Ray',
+    id: 'id-03',
+  },
+  {
+    href: '#',
+    label: 'Categories',
+    id: 'id-04',
+  },
+  {
+    href: '#',
+    label: 'About us',
+    id: 'id-05',
+  },
+];
 
 /**
  * Navigation bar
@@ -71,7 +98,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
         </Link>
       ))}
-      <FaBars className="Navbar__hamburger" />
+      <Menu items={menuItems} />
     </nav>
   );
 };

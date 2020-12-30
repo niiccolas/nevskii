@@ -4,3 +4,4 @@ export * from './Navbar/Navbar';
 export * from './SearchBar/SearchBar';
 export * from './BadgeList/BadgeList';
 export * from './AvatarList/AvatarList';
+export * from './Menu/Menu';
