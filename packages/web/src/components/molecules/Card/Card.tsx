@@ -19,7 +19,7 @@ type CardProps = {
   price: string;
   style?: CSS.Properties;
   button?: boolean;
-  linkUrl?: number;
+  linkUrl: number;
   buttonType?: 'button' | 'submit';
   ean: string;
 };
@@ -47,10 +47,16 @@ export const Card: React.FC<CardProps> = ({
       style={style}
     >
       <div className="Card__header">
-        <Link href={linkUrl ? `products/${linkUrl}` : '#'}>
-          <a href={linkUrl ? `products/${linkUrl}` : '#'}>
-            <h2 className="Card__title">{title}</h2>
-          </a>
+        {/* <Link href={linkUrl ? `products/${linkUrl}` : '#'}> */}
+        <Link
+          href={{
+            pathname: 'products/[linkUrl]',
+            query: {
+              linkUrl,
+            },
+          }}
+        >
+          <h2 className="Card__title">{title}</h2>
         </Link>
         <h3 className="Card__subtitle">{subtitle}</h3>
         <BadgeList
@@ -78,12 +84,12 @@ export const Card: React.FC<CardProps> = ({
             onClick={() =>
               dispatch(
                 addItem({
-                  ean: ean,
                   name: title,
                   quantity: 1,
                   src,
                   price,
                   linkUrl,
+                  ean,
                 }),
               )
             }

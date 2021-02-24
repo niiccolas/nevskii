@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "resolveJsonModule": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "baseUrl": "./packages",
+    "paths": {
+      "@nevskii/api": ["api/src"],
+      "@nevskii/web": ["web/src"],
+      "@nevskii/*": ["*/src"]
+    }
+  }
+}

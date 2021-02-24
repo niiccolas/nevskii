@@ -47,13 +47,28 @@ export const Listing: React.FC<ListingProps> = ({
   const handlePagination = (page: { selected: number }) => {
     const currentQuery = router.query;
     currentQuery.page = (page.selected + 1).toString();
-    router.push({
-      query: currentQuery,
-    });
+    router.push(
+      {
+        query: currentQuery,
+      },
+      undefined,
+      {
+        scroll: false,
+      },
+    );
+
+    // @ts-ignore
+    document
+      .getElementById('ListingID')
+      .scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+        inline: 'nearest',
+      });
   };
 
   return (
-    <section className="Listing">
+    <section className="Listing" id="ListingID">
       <h3 className="Listing__header">
         {router.query.title ? (
           <span>
@@ -70,7 +85,6 @@ export const Listing: React.FC<ListingProps> = ({
           header
         )}
       </h3>
-
       <div className="Listing__items">
         {items &&
           items.map(

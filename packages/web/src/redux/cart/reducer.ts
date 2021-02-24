@@ -1,5 +1,5 @@
 import { AnyAction } from 'redux';
-import { CartActionTypes } from './types';
+import { CartActionTypes, CartState } from './types';
 
 import {
   addItemToCart,
@@ -7,17 +7,6 @@ import {
   decrementItem,
   removeItem,
 } from './utils';
-
-type CartItem = {
-  name: string;
-  quantity: number;
-  ean: string;
-};
-
-type CartState = {
-  isVisible: boolean;
-  items: CartItem[];
-};
 
 const INITIAL_STATE = {
   isVisible: false,

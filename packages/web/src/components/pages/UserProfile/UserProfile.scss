@@ -1,0 +1,44 @@
+@import "@styles/utils.scss";
+
+.UserProfile {
+  padding: 0 $space-m;
+  // width: 300px;
+}
+
+.UserProfile__Heading {
+  margin-bottom: $space-m;
+  font-weight: 300;
+}
+
+.UserProfile__UserName {
+  font-weight: 800;
+}
+
+.UserProfile__section {
+  margin-bottom: $space-m;
+  padding: $space-m;
+  border: 1px solid white;
+  border-radius: 5px;
+}
+
+.UserProfile__infoLabel {
+  font-family: "IBM Plex Mono", monospace;
+}
+
+.UserProfile__button {
+  margin: $space-s 0;
+}
+
+.UserProfile__editBtn {
+  margin: $space-m 0;
+}
+
+.UserProfile__sectionHeader {
+  font-size: 2.5rem;
+  // text-decoration: underline;
+}
+
+.UserProfile__editError {
+  color: _color(primary);
+  font-weight: 700;
+}

@@ -66,3 +66,12 @@
     text-decoration: underline;
   }
 }
+
+.Card__title {
+  font-weight: bold;
+
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}

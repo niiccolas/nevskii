@@ -6,6 +6,8 @@
       "@Atoms": ["components/atoms/index.ts"],
       "@Molecules": ["components/molecules/index.ts"],
       "@Organisms": ["components/organisms/index.ts"],
+      "@Pages": ["components/pages/index.ts"],
+      "@Templates": ["components/templates/index.ts"],
       "@utils": ["utils/index.ts"]
     },
     "target": "es5",

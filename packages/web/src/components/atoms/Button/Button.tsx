@@ -18,11 +18,11 @@ export interface ButtonProps {
   /**
    * Button contents
    */
-  label: string;
+  label?: string;
   /**
    * Optional click handler
    */
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<HTMLElement>) => any;
   className?: string;
   type: 'button' | 'submit';
 }
@@ -31,6 +31,7 @@ export interface ButtonProps {
  * Primary UI component for user interaction
  */
 export const Button: React.FC<ButtonProps> = ({
+  children,
   primary = false,
   size = 'medium',
   type = 'button',
@@ -48,6 +49,7 @@ export const Button: React.FC<ButtonProps> = ({
       {...props}
     >
       {label}
+      {children}
     </button>
   );
 };

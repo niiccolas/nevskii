@@ -18,6 +18,9 @@ export const getProducts = async (
       orderBy: orderByQuery,
     } = req.query;
 
+    /**
+     * Building Query
+     */
     let query = getRepository(Products)
       .createQueryBuilder('p')
       .leftJoinAndMapOne('p.authors', 'p.productAuthors', 'pau')
@@ -41,13 +44,18 @@ export const getProducts = async (
     const takeItems: number = sizeQuery
       ? Number(sizeQuery)
       : DEFAULT_ITEMS_PER_PAGE;
+
     const skipItems: number =
       pageQuery && Number(pageQuery) > 1
         ? (Number(pageQuery) - 1) * takeItems
         : 0;
-    query.take(takeItems).skip(skipItems);
-    const products = await query.getMany();
-    const productsCount = products.length;
+    query.take(takeItems);
+    query.skip(skipItems);
+
+    /**
+     * Get query results
+     */
+    const [products, productsCount] = await query.getManyAndCount();
 
     return res.json({
       page: Number(pageQuery) || DEFAULT_PAGE,

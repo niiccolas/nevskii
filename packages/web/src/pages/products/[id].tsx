@@ -4,7 +4,7 @@ import axios from 'axios';
 const { NEVSKII_API, TMDB_API_KEY } = process.env;
 
 import { Product } from '@Organisms';
-import Layout from '../../components/templates/Layout/Layout';
+import { Layout } from '@Templates';
 
 export async function getServerSideProps(context: Context) {
   const { id } = context.params;

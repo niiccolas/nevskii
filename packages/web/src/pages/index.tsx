@@ -1,11 +1,12 @@
 import { GetServerSideProps, NextPage } from 'next';
 import Head from 'next/head';
-const { NEVSKII_API } = process.env;
+import axios from 'axios';
 
 import { Hero } from '@Molecules';
 import { Listing, ProductsItem } from '@Organisms';
-import Layout from '../components/templates/Layout/Layout';
+import { Layout } from '@Templates';
 
+const { NEVSKII_API } = process.env;
 interface Props {
   products: {
     page: number;
@@ -16,19 +17,23 @@ interface Props {
   };
 }
 
+import './index.scss';
+
 export const getServerSideProps: GetServerSideProps<Props> = async ({
   query,
 }) => {
-  const apiCall =
+  const { data } = await axios.get(
     `${NEVSKII_API}/products?` +
-    Object.entries(query)
-      .map(([param, value]) => param + '=' + value)
-      .join('&');
-  const res = await fetch(apiCall);
-  const products = (await res.json()) || {};
+      Object.entries(query)
+        .map(([param, value]) => param + '=' + value)
+        .join('&'),
+  );
 
+  /*
+   * getServerSideProps sends to current page component its return value as props
+   */
   return {
-    props: { products }, // will be passed to the page component as props
+    props: { products: data },
   };
 };
 
@@ -37,15 +42,18 @@ export const Home: NextPage<Props> = ({ products }): JSX.Element => (
     <Head>
       <title>Nevskii</title>
     </Head>
-    <Hero
-      videoSrc=""
-      // https://nevskii.s3.eu-west-3.amazonaws.com/assets/video/iamcuba.mp4
-      poster="https://upload.epagine.fr/3327/promo/3327_11035_20-10-31-09-46-35.jpg"
-      headerLabel="“Soy Cuba”"
-      ctaLabel="SEE MORE"
-      subtitleLabel="Reissue Blu-Ray 4K"
-    />
-    <Listing header="Movies" products={products} />
+    <div className="index__Hero">
+      <Hero
+        videoSrc="https://nevskii.s3.eu-west-3.amazonaws.com/assets/video/iamcuba.mp4"
+        poster="https://upload.epagine.fr/3327/promo/3327_11035_20-10-31-09-46-35.jpg"
+        headerLabel="“Soy Cuba”"
+        ctaLabel="SEE MORE"
+        subtitleLabel="Reissue Blu-Ray 4K"
+      />
+    </div>
+    <div className="index__Listing">
+      <Listing header="Movies" products={products} />
+    </div>
   </Layout>
 );
 

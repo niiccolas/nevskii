@@ -4,6 +4,7 @@ const { Pool } = require('pg');
 const fs = require('fs');
 const { promisify } = require('util');
 const exec = promisify(require('child_process').exec);
+const bcrypt = require('bcrypt');
 
 const {
   getIdIndex,
@@ -369,11 +370,11 @@ const seedForeignTables = async data => {
  * @param {Array<{}>} an array of user objects
  */
 const seedUsers = async users => {
-  await pool.query(`INSERT INTO user_types ("description")
-  VALUES ('admin'), ('user');`);
+  // await pool.query(`INSERT INTO user_types ("description")
+  // VALUES ('admin'), ('user');`);
 
   for (const {
-    userType,
+    isAdmin,
     firstName,
     lastName,
     email,
@@ -383,11 +384,13 @@ const seedUsers = async users => {
     countryId,
     city,
     zipCode,
+    password,
+    avatarUrl,
   } of users) {
     try {
       await pool.query(
         `INSERT INTO users (
-        "id_user_type",
+        "is_admin",
         "first_name",
         "last_name",
         "email",
@@ -397,11 +400,13 @@ const seedUsers = async users => {
         "created_at",
         "id_country",
         "city",
-        "zip_code")
+        "zip_code",
+        "password",
+        "avatar_url")
       VALUES
-      ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)`,
+      ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)`,
         [
-          userType || 2,
+          isAdmin || false,
           firstName || 'John',
           lastName || 'Doe',
           email, // UNIQUE!
@@ -412,6 +417,8 @@ const seedUsers = async users => {
           countryId || randomInt(0, 10),
           city || 'Paris',
           zipCode || '75011',
+          bcrypt.hashSync(password, 10),
+          avatarUrl || '',
         ],
       );
     } catch (error) {

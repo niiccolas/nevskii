@@ -1,5 +1,5 @@
 import Cart from '../components/pages/Cart/Cart';
-import Layout from '../components/templates/Layout/Layout';
+import { Layout } from '@Templates';
 
 export default function cart() {
   return (

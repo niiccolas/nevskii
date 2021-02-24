@@ -14,12 +14,17 @@ export const INITIAL_STATE = {
     isVisible: false,
     items: [],
   },
+  auth: {
+    accessToken: undefined,
+    refreshToken: undefined,
+  },
+  user: {},
 };
 
 const persistConfig = {
   key: 'primary',
   storage,
-  whitelist: ['cart'],
+  // whitelist: ['cart'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

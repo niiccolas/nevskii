@@ -28,6 +28,11 @@ module.exports = {
         __dirname,
         '../src/components/organisms/index.ts',
       ),
+      ['@Pages']: path.resolve(__dirname, '../src/components/pages/index.ts'),
+      ['@Templates']: path.resolve(
+        __dirname,
+        '../src/components/templates/index.ts',
+      ),
       ['@utils']: path.resolve(__dirname, '../src/utils/index.ts'),
       ['@styles']: path.resolve(__dirname, '../src/styles'),
     };
