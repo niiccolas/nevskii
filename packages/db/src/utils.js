@@ -1,7 +1,7 @@
-import { resolve } from 'path';
-import csv from 'csvtojson';
-import Spinnies from 'spinnies';
-import { bold } from 'chalk';
+const { resolve } = require('path');
+const csv = require('csvtojson');
+const Spinnies = require('spinnies');
+const { bold } = require('chalk');
 
 /**
  * Return array-like position of string in Set
@@ -107,7 +107,24 @@ const logExit = (error, EAN = '') => {
 const randomInt = (min, max) =>
   Math.floor(Math.random() * (max + 1 - min) + min);
 
-export default {
+/**
+ * Display usage information for the automated DB seed script
+ */
+const usage = () =>
+  console.log(`USAGE
+yarn seed [-dmh] [-i number] [-o number]   
+
+OPTIONS
+-m | --mint           use restricted dataset that has no missing columns
+-d | --deploy         deploy generated DB to Heroku
+-h | --help           display this help menu
+-i | --items number   change default number (400) of sourcefile items to seed
+-o | --order number   change default number (500) of mock orders to seed
+
+EXAMPLE
+yarn seed --items 50 --orders 500 --mint --deploy
+`);
+module.exports = {
   getIdIndex,
   parseMonthFR,
   generateIdName,
@@ -115,4 +132,5 @@ export default {
   spinnies,
   logExit,
   randomInt,
+  usage,
 };

@@ -38,6 +38,8 @@ export const SearchBar: React.FC<SearchBarProps> = ({
             size={size}
             value={searchQuery}
             onChange={handleChange}
+            placeHolder={'Enter search terms...'}
+            required
           />
           <Button
             primary={primary}

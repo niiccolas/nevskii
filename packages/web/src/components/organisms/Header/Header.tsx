@@ -1,8 +1,8 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
-
 import { State } from '../../../redux/types';
+
 import { Navbar, NavLink } from '@Molecules';
 import { Logo } from '@Atoms';
 import { CartSlider } from '@Organisms';
@@ -21,24 +21,18 @@ export interface HeaderProps {
 }
 
 export const Header: React.FC<HeaderProps> = ({
-  user,
   logo,
   logoMobile,
   className = '',
 }) => {
   const router = useRouter();
+  const dispatch = useDispatch();
   const {
     cart: { items, isVisible },
   } = useSelector((state: State) => state);
-  const dispatch = useDispatch();
   const total = totalItemsCount(items);
 
-  const userNavLinks: NavLink[] = user
-    ? [{ icon: 'user', href: '/profile', onClick: () => alert('profile') }]
-    : [
-        { icon: 'signIn', onClick: () => alert('sign in') },
-        { icon: 'signUp', onClick: () => alert('sign up') },
-      ];
+  const userNavLinks: NavLink[] = [{ icon: 'user', href: '/profile' }];
 
   const cartLink: NavLink[] =
     router.pathname !== '/cart'
@@ -46,7 +40,11 @@ export const Header: React.FC<HeaderProps> = ({
           {
             icon: 'cart',
             ...(total && { label: `${total}` }),
-            onClick: () => dispatch({ type: 'TOGGLE_CART' }),
+            onClick: () => {
+              // alert('CART OPEN');
+              // router.push('/cart');
+              dispatch({ type: 'TOGGLE_CART' });
+            },
           },
         ]
       : [];

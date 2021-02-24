@@ -11,7 +11,7 @@
     "storybook": "yarn workspace @nevskii/web storybook",
     "api": "yarn workspace @nevskii/api start",
     "api:dev": "yarn workspace @nevskii/api dev",
-    "seed": "yarn workspace @nevskii/db seed",
+    "db:seed": "yarn workspace @nevskii/db seed",
     "lint": "yarn workspaces run lint",
     "format": "yarn workspaces run format"
   },

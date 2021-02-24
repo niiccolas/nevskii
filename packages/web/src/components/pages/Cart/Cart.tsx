@@ -30,7 +30,7 @@ const Cart = () => {
           <span>Product</span>
         </div>
         <div className="Cart__headerBlock">
-          <span>Description</span>
+          <span>Desc.</span>
         </div>
         <div className="Cart__headerBlock">
           <span>Quantity</span>
@@ -64,6 +64,8 @@ const Cart = () => {
 
 const CartElement = (props: CartItem) => {
   const { name, ean, quantity, src, price, linkUrl } = props;
+
+  console.log({ name, ean, quantity, src, price, linkUrl });
   const dispatch = useDispatch();
 
   return (
@@ -72,7 +74,12 @@ const CartElement = (props: CartItem) => {
         <img src={src} alt={name} />
       </div>
       <div className="name">
-        <Link href={linkUrl ? `products/${linkUrl}` : '#'}>
+        <Link
+          href={{
+            pathname: '/products/[id]',
+            query: { id: linkUrl || '#' },
+          }}
+        >
           <a
             className="CartElement__label"
             href={linkUrl ? `products/${linkUrl}` : '#'}

@@ -4,7 +4,7 @@
   position: relative;
   display: inline-block;
   width: 100%;
-  height: 3.5em;
+  height: 3em;
   padding: 0 1em;
   font-weight: 600;
   font-size: 0.8em;
@@ -32,12 +32,12 @@
 
 .Input--secondary {
   color: white;
-  background-color: transparent;
+  background-color: rgba(255, 255, 255, 0.075);
   border-bottom: 2px solid white;
 
   &:hover,
   &:active {
-    background-color: rgba(255, 255, 255, 0.075);
+    background-color: _color(highlight);
   }
 
   &:focus {
@@ -46,13 +46,13 @@
 }
 
 .Input--small {
-  font-size: 12px;
-}
-
-.Input--medium {
   font-size: 14px;
 }
 
-.Input--large {
+.Input--medium {
   font-size: 16px;
+}
+
+.Input--large {
+  font-size: 20px;
 }

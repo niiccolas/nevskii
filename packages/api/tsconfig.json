@@ -6,7 +6,12 @@
       "@/types/*": ["src/types/*"],
       "*": ["src/types/*"]
     },
-    "typeRoots": ["./src/types"],
+    "typeRoots": [
+      "./src/types",
+      "node_modules/@types",
+      "@types",
+      "../../node_modules/@types"
+    ],
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "target": "es5",

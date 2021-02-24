@@ -5,7 +5,9 @@ import {
   FaSearch,
   FaShoppingCart,
   FaUser,
+  FaUserCircle,
   FaSignInAlt,
+  FaSignOutAlt,
   FaUserPlus,
 } from 'react-icons/fa';
 import CSS from 'csstype';
@@ -18,17 +20,18 @@ import './Navbar.scss';
 
 const NAV_ICONS = {
   search: FaSearch,
-  user: FaUser,
+  user: FaUserCircle,
   cart: FaShoppingCart,
   signIn: FaSignInAlt,
+  signOut: FaSignOutAlt,
   signUp: FaUserPlus,
 };
 
 export interface NavLink {
   label?: string;
   href?: string;
-  icon?: 'user' | 'search' | 'cart' | 'signIn' | 'signUp';
-  onClick: Function;
+  icon?: 'user' | 'search' | 'cart' | 'signIn' | 'signUp' | 'signOut';
+  onClick?: Function;
 }
 
 export interface NavbarProps {
@@ -78,6 +81,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 }) => {
   const {
     cart: { items },
+    user,
   } = useSelector((state: State) => state);
   const cartItemsCount = totalItemsCount(items);
 
@@ -86,7 +90,13 @@ export const Navbar: React.FC<NavbarProps> = ({
       <SearchBar active={withSearch} searchBtnLabel={searchBtnLabel} />
       {navLinks.map(({ href = '#', label, icon, onClick }, idx) => (
         <Link href={href} prefetch={false} key={idx}>
-          <div className="Navbar__link" onClick={() => onClick()}>
+          <div
+            className={[
+              'Navbar__link',
+              icon === 'user' && user.profile && 'Navbar__link--logged-in',
+            ].join(' ')}
+            onClick={e => onClick && onClick(e)}
+          >
             {icon && React.createElement(NAV_ICONS[icon])}
             <span
               className={

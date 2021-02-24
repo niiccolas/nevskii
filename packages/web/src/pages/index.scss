@@ -1,0 +1,12 @@
+.index__Hero {
+  box-sizing: border-box;
+
+  // @media screen and (min-width: 920px) {
+  //   width: 70vw;
+  // }
+
+  @media screen and (min-width: 1280px) {
+    width: 50vw;
+    margin: auto;
+  }
+}

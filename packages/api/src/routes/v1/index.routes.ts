@@ -1,15 +1,16 @@
 import { Router, Response } from 'express';
 import swaggerUi from 'swagger-ui-express';
 
-import vinyl from './vinyl.routes';
 import products from './products.routes';
 import swagger from './swagger.routes';
 import root from './root.routes';
+import auth from './auth.routes';
+import users from './users.routes';
 
 const router = Router();
 
-// Routes
-router.use('/vinyl', vinyl);
+router.use('/users', users);
+router.use('/auth', auth);
 router.use('/products', products);
 router.use('/swagger', swaggerUi.serve, swagger);
 router.use('/', root);

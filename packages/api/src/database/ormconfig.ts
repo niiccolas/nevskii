@@ -1,7 +1,7 @@
 import { ConnectionOptions } from 'typeorm';
 import path from 'path';
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-require('dotenv').config();
+import dotenv from 'dotenv';
+dotenv.config();
 
 const isCompiled = path.extname(__filename).includes('js');
 
@@ -13,7 +13,8 @@ export default {
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
   synchronize: process.env.DB_SYNC === 'true',
-  logging: process.env.DB_LOGS === 'true',
+  logging:
+    process.env.NODE_ENV === 'development' && process.env.DB_LOGS === 'true',
   autoReconnect: true,
   reconnectTries: 15,
   reconnectInterval: 2000,

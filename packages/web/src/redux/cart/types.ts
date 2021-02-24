@@ -10,10 +10,10 @@ export enum CartActionTypes {
 export type CartItem = {
   name?: string;
   quantity: number;
-  ean?: string;
   src?: string;
   price?: string;
   linkUrl?: number;
+  ean?: string;
 };
 
 export type CartState = {

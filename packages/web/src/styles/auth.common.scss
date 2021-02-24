@@ -1,0 +1,45 @@
+@import "@styles/utils.scss";
+
+.Sign {
+  width: 400px;
+  margin: 0 auto;
+
+  @media screen and (max-width: 480px) {
+    width: 100%;
+    padding: 0 1.5rem;
+  }
+
+  &__header {
+    margin-bottom: 1rem;
+    color: _color(neutral, lighter);
+    font-weight: 600;
+    font-size: 2.5rem;
+    line-height: 3.5rem;
+
+    @media screen and (max-width: 480px) {
+      font-size: 2rem;
+      line-height: 2.5rem;
+    }
+  }
+
+  &__CTA {
+    width: 100%;
+    margin-top: 1.5rem;
+  }
+
+  &__error {
+    margin-top: 1rem;
+    color: _color(primary);
+    font-weight: 700;
+    text-align: center;
+  }
+
+  a {
+    color: _color(neutral, lighter);
+    text-decoration: underline;
+
+    &:hover {
+      color: _color(highlight);
+    }
+  }
+}

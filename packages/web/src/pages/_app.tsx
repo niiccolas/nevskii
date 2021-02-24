@@ -1,8 +1,8 @@
 import { AppProps } from 'next/app';
-import { Provider } from 'react-redux';
 import { useStore } from '../redux/store';
 import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
+import { Provider } from 'react-redux';
 
 import '../styles/global.scss';
 
